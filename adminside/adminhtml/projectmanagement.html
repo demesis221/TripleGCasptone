@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Project Portfolio Management | Triple G BuildHub</title>
+    <link rel="stylesheet" href="../../SiteDiary/sitecss/dashboard.css">
+    <link rel="stylesheet" href="../../SiteDiary/sitecss/history.css">
+    <link rel="stylesheet" href="../admincss/admindiaryreviewer.css">
+    <link rel="stylesheet" href="../admincss/projectmanagement.css">
+    <link rel="stylesheet" href="../admincss/blogmanagement.css">
+    <link rel="stylesheet" href="../admincss/header.css">
+    <link rel="stylesheet" href="../admincss/admin-nav.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+     <!-- Navigation Bar -->
+     <nav class="navbar">
+        <div class="logo-container">
+            <img src="../../css/images/logostick.png" alt="Logo" class="logo">
+            <div class="logo1">TRIPLE<a href="#">G</a></div>
+        </div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="../../home.html">Home</a></li>
+            
+            <!-- Portfolio Dropdown -->
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle">Portfolio <i class="fas fa-caret-down"></i></a>
+                <ul class="dropdown-menu">
+                    <li><a href="projectmanagement.html">Project Management</a></li>
+                    <li><a href="blogmanagement.html">Blog Management</a></li>
+                </ul>
+            </li>
+            
+            <!-- Site Diary Dropdown -->
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle">Site Diary Management <i class="fas fa-caret-down"></i></a>
+                <ul class="dropdown-menu">
+                    <li><a href="admindiaryreviewer.html" class="active">Diary Review</a></li>
+                    <li><a href="adminhistory.html">Diary History</a></li>
+                    <li><a href="adminreports.html">Reports & Analytics</a></li>
+                    <li><a href="adminclientproject.html">Client Projects</a></li>
+                </ul>
+            </li>
+            
+            <!-- Admin Tools -->
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle">Admin Tools <i class="fas fa-caret-down"></i></a>
+                <ul class="dropdown-menu">
+                    <li><a href="adminmessagecenter.html">Message Center</a></li>
+                    <li><a href="adminusers.html">User Management</a></li>
+                </ul>
+            </li>
+            
+            <li><a href="../../SiteDiary/settings.html">Settings</a></li>
+        </ul>
+        <button class="mobile-menu-btn">
+            <i class="fas fa-bars"></i>
+        </button>
+    </nav>
+    
+
+    <div class="container">
+        <!-- Page Header (Admin Theme) -->
+        <div class="page-header">
+            <div class="page-title">
+                <i class="fas fa-folder-plus"></i>
+                <h1>Project Portfolio Management</h1>
+            </div>
+            <div class="export-options">
+                <button class="btn btn-primary" id="refreshBtn"><i class="fas fa-sync-alt"></i> Refresh</button>
+            </div>
+        </div>
+        <p style="margin-bottom:2rem; color:#777; font-size:1rem;">Manage project entries that will be publicly visible in the Triple G Studio project showcase.</p>
+
+        <!-- Project Entry Form -->
+        <div class="form-container card">
+            <form id="projectForm" enctype="multipart/form-data">
+                <div class="form-columns" style="display: flex; gap: 2rem;">
+                    <!-- Left Column -->
+                    <div class="form-column" style="flex:1; min-width:260px;">
+                        <div class="form-group">
+                            <label for="title">Project Title <span style="color:red">*</span></label>
+                            <input type="text" id="title" name="title" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="category">Project Category</label>
+                            <select id="category" name="category" required>
+                                <option value="">Select Category</option>
+                                <option>Residential</option>
+                                <option>Commercial</option>
+                                <option>Institutional</option>
+                                <option>Industrial</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="client">Client Name</label>
+                            <input type="text" id="client" name="client">
+                        </div>
+                        <div class="form-group">
+                            <label for="lead">Lead Architect</label>
+                            <input type="text" id="lead" name="lead">
+                        </div>
+                        <div class="form-group">
+                            <label for="status">Project Status</label>
+                            <select id="status" name="status" required>
+                                <option value="">Select Status</option>
+                                <option>Planned</option>
+                                <option>In Progress</option>
+                                <option>Completed</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="completion">Completion Date</label>
+                            <input type="date" id="completion" name="completion">
+                        </div>
+                        <div class="form-group">
+                            <label for="duration">Project Duration</label>
+                            <input type="text" id="duration" name="duration" placeholder="e.g. 14 Months">
+                        </div>
+                        <div class="form-group">
+                            <label for="size">Project Size</label>
+                            <input type="text" id="size" name="size" placeholder="e.g. 350 m²">
+                        </div>
+                        <div class="form-group">
+                            <label for="tagline">Tagline / Short Highlight</label>
+                            <input type="text" id="tagline" name="tagline">
+                        </div>
+                    </div>
+                    <!-- Right Column -->
+                    <div class="form-column" style="flex:1; min-width:260px;">
+                        <div class="form-group">
+                            <label for="cover">Cover Image <span style="color:red">*</span></label>
+                            <input type="file" id="cover" name="cover" accept="image/png, image/jpeg" required>
+                            <div id="coverPreview" class="img-preview"></div>
+                            <small>Used as hero banner on project-detail.html</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="gallery">Project Gallery (up to 6)</label>
+                            <input type="file" id="gallery" name="gallery" accept="image/png, image/jpeg" multiple>
+                            <div id="galleryPreview" class="img-preview-grid"></div>
+                            <small>Accepted: JPG, PNG, ≤ 5MB each</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="overview">Project Overview <span style="color:red">*</span></label>
+                            <textarea id="overview" name="overview" rows="4" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="sustainability">Sustainability / Tech / Goals</label>
+                            <textarea id="sustainability" name="sustainability" rows="2"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <!-- Milestones / Timeline Builder -->
+                <fieldset class="card" style="margin-top:2rem;">
+                    <legend><i class="fas fa-tasks"></i> Project Milestones</legend>
+                    <div class="milestone-actions">
+                        <button type="button" class="btn btn-secondary" onclick="addMilestone()"><i class="fas fa-plus"></i> Add Milestone</button>
+                    </div>
+                    <div id="milestoneList"></div>
+                </fieldset>
+                <!-- Visibility Controls -->
+                <div class="form-group" style="margin-top:1.5rem;">
+                    <label><input type="checkbox" id="draft" name="draft"> Keep as Draft</label>
+                    <label style="margin-left:2em;"><input type="checkbox" id="publish" name="publish" checked> Publish to Public Projects Page</label>
+                </div>
+                <!-- Form Buttons -->
+                <div class="form-actions" style="margin-top:1.5rem; display:flex; gap:1em; justify-content: flex-end;">
+                    <button type="reset" class="btn btn-secondary"><i class="fas fa-trash"></i> Reset Form</button>
+                    <button type="button" class="btn btn-primary" onclick="saveAsDraft()"><i class="fas fa-save"></i> Save as Draft</button>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-upload"></i> Publish Project</button>
+                </div>
+            </form>
+        </div>
+        <!-- (Optional Future) Table of Projects -->
+        <div class="card" style="margin-top:2rem;">
+            <h2><i class="fas fa-table"></i> Existing Projects</h2>
+            <div class="table-responsive">
+                <table id="projectsTable">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Status</th>
+                            <th>Visibility</th>
+                            <th>Completion Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Dynamically filled -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- Modals (confirmation, success/failure) -->
+    <div class="modal" id="actionModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle"></h3>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="modalBody"></div>
+            <div class="modal-footer" id="modalFooter"></div>
+        </div>
+    </div>
+    <script src="../adminjs/projectmanagement.js"></script>
+    <script src="../adminjs/admin-nav.js"></script>
+</body>
+</html>

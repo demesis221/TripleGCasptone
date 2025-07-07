@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Blog - Triple G BuildHub</title>
+    <link rel="stylesheet" href="../SiteDiary/sitecss/createblog.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo-container">
+            <img src="../userside/css/images/logostick.png" alt="Logo" class="logo">
+            <div class="logo1">TRIPLE<a href="index.html">G</a></div>
+        </div>
+        <ul class="nav-links" id="navLinks">
+            <!-- General Pages -->
+            <li><a href="../userside/home.html">Home</a></li>
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="chatbot.html">Message Center</a></li>        
+            <li><a href="newproject.html">Create Project</a></li>
+            
+            <li class="dropdown">
+                <a href="#" class="dropbtn">Blog ▾</a>
+                <div class="dropdown-content">
+                <a href="createblog.html">Create Blog</a>
+                <a href="drafts.html">Drafts</a>              
+                </div>
+            </li>
+
+            <!-- Site Diary Module -->
+            <li class="dropdown">
+                <a href="#" class="dropbtn">Site Diary ▾</a>
+                <div class="dropdown-content">
+                <a href="diary.html">New Entry</a>
+                <a href="history.html">History</a>
+                <a href="reports.html">Reports</a>
+                </div>
+            </li>
+
+            <!-- Settings -->
+            <li><a href="settings.html">Settings</a></li>
+        </ul>
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <i class="fas fa-bars"></i>
+        </button>
+    </nav>
+
+    <div class="container">
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="page-title">
+                <i class="fas fa-pen-to-square"></i>
+                <h1>Create Blog Post</h1>
+            </div>
+            <div class="user-info">
+                <div class="user-greeting">
+                    <div class="user-name">John Doe</div>
+                    <div class="user-role">Architect</div>
+                </div>
+                <div class="user-avatar">JD</div>
+            </div>
+        </div>
+
+        <!-- Blog Creation Form -->
+        <div class="blog-creation-container">
+            <div class="form-container">
+                <form id="blogForm" class="blog-form">
+                    <!-- Title Input -->
+                    <div class="form-group">
+                        <label for="blogTitle">Blog Title <span class="required">*</span></label>
+                        <input type="text" id="blogTitle" name="blogTitle" class="form-control" placeholder="Enter a catchy title" required>
+                    </div>
+
+                    <!-- Blog Category -->
+                    <div class="form-group">
+                        <label for="blogCategory">Category <span class="required">*</span></label>
+                        <select id="blogCategory" name="blogCategory" class="form-control" required>
+                            <option value="" disabled selected>Select a category</option>
+                            <option value="industry-insights">Industry Insights</option>
+                            <option value="expert-advice">Expert Advice</option>
+                            <option value="case-study">Case Study</option>
+                            <option value="design-trends">Design Trends</option>
+                            <option value="sustainable-building">Sustainable Building</option>
+                            <option value="technology">Construction Technology</option>
+                            <option value="regulations">Regulations & Standards</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Featured Image Upload -->
+                    <div class="form-group">
+                        <label for="featuredImage">Featured Image</label>
+                        <div class="image-upload-container">
+                            <div class="image-preview" id="imagePreview">
+                                <i class="fas fa-image"></i>
+                                <span>No image selected</span>
+                            </div>
+                            <div class="image-input">
+                                <input type="file" id="featuredImage" name="featuredImage" accept=".jpg, .jpeg, .png" class="form-control-file">
+                                <label for="featuredImage" class="upload-btn">
+                                    <i class="fas fa-upload"></i> Choose Image
+                                </label>
+                                <p class="file-info">JPG or PNG, max 2MB</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tags Input -->
+                    <div class="form-group">
+                        <label for="blogTags">Tags (separate with commas)</label>
+                        <input type="text" id="blogTags" name="blogTags" class="form-control" placeholder="architecture, design, construction">
+                    </div>
+
+                    <!-- Reading Time Estimate -->
+                    <div class="form-group">
+                        <label for="readingTime">Estimated Reading Time (minutes)</label>
+                        <input type="number" id="readingTime" name="readingTime" class="form-control" min="1" max="60" placeholder="5">
+                    </div>
+
+                    <!-- Blog Content Editor -->
+                    <div class="form-group content-editor">
+                        <label for="blogContent">Blog Content <span class="required">*</span></label>
+                        
+                        <div class="editor-toolbar">
+                            <button type="button" class="toolbar-btn" data-command="bold" title="Bold">
+                                <i class="fas fa-bold"></i>
+                            </button>
+                            <button type="button" class="toolbar-btn" data-command="italic" title="Italic">
+                                <i class="fas fa-italic"></i>
+                            </button>
+                            <button type="button" class="toolbar-btn" data-command="underline" title="Underline">
+                                <i class="fas fa-underline"></i>
+                            </button>
+                            <span class="separator"></span>
+                            <button type="button" class="toolbar-btn" data-command="h2" title="Heading 2">
+                                <i class="fas fa-heading"></i>2
+                            </button>
+                            <button type="button" class="toolbar-btn" data-command="h3" title="Heading 3">
+                                <i class="fas fa-heading"></i>3
+                            </button>
+                            <span class="separator"></span>
+                            <button type="button" class="toolbar-btn" data-command="insertUnorderedList" title="Bullet List">
+                                <i class="fas fa-list-ul"></i>
+                            </button>
+                            <button type="button" class="toolbar-btn" data-command="insertOrderedList" title="Numbered List">
+                                <i class="fas fa-list-ol"></i>
+                            </button>
+                            <span class="separator"></span>
+                            <button type="button" class="toolbar-btn" data-command="createLink" title="Insert Link">
+                                <i class="fas fa-link"></i>
+                            </button>
+                            <button type="button" class="toolbar-btn" data-command="insertImage" title="Insert Image">
+                                <i class="fas fa-image"></i>
+                            </button>
+                        </div>
+                        
+                        <div id="blogContentEditor" class="editor-content" contenteditable="true" data-placeholder="Write your blog post here..."></div>
+                        <textarea name="blogContent" id="blogContent" required hidden></textarea>
+                    </div>
+                    
+                    <!-- Form Buttons -->
+                    <div class="form-actions">
+                        <button type="button" id="clearFormBtn" class="btn btn-outline">
+                            <i class="fas fa-trash-alt"></i> Clear Form
+                        </button>
+                        <button type="button" id="saveDraftBtn" class="btn btn-secondary">
+                            <i class="fas fa-save"></i> Save as Draft
+                        </button>
+                        <button type="submit" id="submitBtn" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i> Request Admin Approval
+                        </button>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Preview Section -->
+            <div class="preview-container">
+                <div class="preview-header">
+                    <h3><i class="fas fa-eye"></i> Post Preview</h3>
+                </div>
+                <div class="blog-preview">
+                    <h2 id="previewTitle">Your Blog Title Will Appear Here</h2>
+                    <div class="preview-meta">
+                        <span class="preview-category"><i class="fas fa-folder"></i> <span id="previewCategory">Category</span></span>
+                        <span class="preview-author"><i class="fas fa-user"></i> Architect</span>
+                        <span class="preview-time"><i class="far fa-clock"></i> <span id="previewReadingTime">5</span> min read</span>
+                    </div>
+                    <div class="preview-image-container">
+                        <img id="previewImage" src="../userside/css/images/image1.jpg" alt="Featured image preview">
+                    </div>
+                    <div id="previewContent" class="preview-content">
+                        <p>Your blog content will appear here as you type. This preview helps you see how your post will look when published.</p>
+                    </div>
+                    <div class="preview-tags" id="previewTags">
+                        <span class="preview-tag">architecture</span>
+                        <span class="preview-tag">design</span>
+                        <span class="preview-tag">construction</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for notifications -->
+    <div id="notificationModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h2 class="modal-title">Success!</h2>
+            <p class="modal-message">Your blog post has been submitted for admin approval.</p>
+            <div class="modal-actions">
+                <button class="btn btn-primary modal-confirm">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="copyright">
+                &copy; GG.Squad. All rights reserved.
+            </div>
+            <div class="footer-links">
+                <a href="#">Terms of Service</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Support</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../SiteDiary/sitejs/createblog.js"></script>
+</body>
+</html> 

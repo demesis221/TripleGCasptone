@@ -1,0 +1,397 @@
+/* Blog Individual Page with Sticky Comments */
+@import url('./blogmain.css');
+
+/* Reset the blog post layout for our new design */
+.blog-post-content {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 10px; /* Main content and sticky comments */
+    gap: 10px;
+    max-width: 1500px;
+    margin: 80px auto 40px;
+    padding: 0 20px;
+}
+
+/* Main content column that holds the article */
+.blog-post-main {
+    width: 100%;
+}
+
+/* Move comments section to the sidebar */
+.blog-post-layout {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+    width: 100%;
+}
+
+/* New sticky comments section */
+.sticky-comments-section {
+    position: sticky;
+    top: 80px; /* Adjust based on your navbar height */
+    height: calc(100vh - 100px);
+    overflow-y: auto;
+    padding-right: 10px;
+    width: 450px;
+    flex-shrink: 0;
+    background-color: rgba(0, 50, 76, 0.6);
+    border-radius: 10px;
+    padding: 20px;
+    border: 1px solid rgba(255, 113, 32, 0.2);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Custom scrollbar for comments section */
+.sticky-comments-section::-webkit-scrollbar {
+    width: 6px;
+}
+
+.sticky-comments-section::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+}
+
+.sticky-comments-section::-webkit-scrollbar-thumb {
+    background: rgba(255, 113, 32, 0.5);
+    border-radius: 10px;
+}
+
+.sticky-comments-section::-webkit-scrollbar-thumb:hover {
+    background: #FF7120;
+}
+
+/* Style adjustments for comments in sidebar */
+.sticky-comments-section .comments-section {
+    margin-top: 0;
+}
+
+.sticky-comments-section .comments-section h3 {
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+.sticky-comments-section .comment {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+}
+
+.sticky-comments-section .comment-form {
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.sticky-comments-section .comment-form h4 {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.sticky-comments-section .form-row {
+    flex-direction: column;
+    gap: 10px;
+}
+
+.sticky-comments-section .form-group {
+    margin-bottom: 10px;
+}
+
+.sticky-comments-section .form-group label {
+    margin-bottom: 5px;
+}
+
+.sticky-comments-section .form-group input,
+.sticky-comments-section .form-group textarea {
+    padding: 10px;
+    font-size: 14px;
+}
+
+.sticky-comments-section .form-group textarea {
+    min-height: 100px;
+}
+
+.sticky-comments-section .btn-primary {
+    padding: 10px 20px;
+    font-size: 14px;
+}
+
+/* Adjust comment appearance for sidebar */
+.sticky-comments-section .comment-avatar img {
+    width: 40px;
+    height: 40px;
+}
+
+.sticky-comments-section .commenter-name {
+    font-size: 15px;
+}
+
+.sticky-comments-section .comment p {
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.sticky-comments-section .nested-comment {
+    margin-left: 20px;
+}
+
+/* Hide the original comments section from the main content area */
+.blog-post-main .comments-section {
+    display: none;
+}
+
+/* Show sidebar on mobile */
+@media (max-width: 992px) {
+    .blog-post-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .blog-post-layout {
+        flex-direction: column;
+    }
+    
+    .sticky-comments-section {
+        position: static;
+        width: 100%;
+        height: auto;
+        margin-top: 40px;
+        max-height: none;
+    }
+    
+    .blog-post-main .comments-section {
+        display: none;
+    }
+}
+
+/* Add a comment counter badge that stays visible */
+.comments-count-badge {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    background-color: #FF7120;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+    z-index: 100;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.comments-count-badge.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.comments-count-badge:hover {
+    background-color: #e65c0d;
+    transform: translateY(-3px);
+}
+
+.comments-count-badge i {
+    font-size: 16px;
+}
+
+/* Only show the badge on mobile */
+@media (min-width: 993px) {
+    .comments-count-badge {
+        display: none;
+    }
+}
+
+/* Image Zoom Functionality */
+.post-image-container {
+    position: relative;
+    margin: 20px 0;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    cursor: zoom-in;
+    transition: all 0.3s ease;
+}
+
+.post-image-container img {
+    width: 100%;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.post-image-container .image-caption {
+    padding: 12px;
+    background-color: rgba(0, 39, 60, 0.8);
+    color: #fff;
+    font-size: 14px;
+    text-align: center;
+}
+
+/* Zoom overlay when an image is zoomed */
+.image-zoom-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    cursor: zoom-out;
+}
+
+.image-zoom-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.zoomed-image {
+    max-width: 90%;
+    max-height: 90vh;
+    object-fit: contain;
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+}
+
+.image-zoom-overlay.active .zoomed-image {
+    transform: scale(1);
+}
+
+.zoom-controls {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 15px;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 10px 20px;
+    border-radius: 30px;
+    z-index: 1010;
+}
+
+.zoom-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+}
+
+.zoom-btn:hover {
+    background-color: rgba(255, 113, 32, 0.5);
+}
+
+.zoom-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    z-index: 1010;
+}
+
+.zoom-close:hover {
+    background-color: #FF7120;
+}
+
+/* Client comment styling */
+.client-comment-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    background-color: rgba(0, 50, 76, 0.1);
+    padding: 12px;
+    border-radius: 8px;
+    border-left: 4px solid #FF7120;
+}
+
+.client-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 15px;
+    border: 2px solid rgba(255, 113, 32, 0.3);
+}
+
+.client-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.client-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.client-name {
+    font-weight: 600;
+    color: rgba(0, 50, 76, 0.8);
+    font-size: 16px;
+}
+
+.client-status {
+    font-size: 12px;
+    color: #FF7120;
+    background-color: rgba(255, 113, 32, 0.1);
+    padding: 2px 8px;
+    border-radius: 10px;
+    display: inline-block;
+    margin-top: 5px;
+    width: fit-content;
+}
+
+.comment-note {
+    margin-top: 15px;
+    font-size: 14px;
+    color: rgba(0, 50, 76, 0.6);
+    background-color: rgba(0, 50, 76, 0.05);
+    padding: 10px;
+    border-radius: 6px;
+    border-left: 3px solid #FF7120;
+}
+
+.comment-note i {
+    color: #FF7120;
+    margin-right: 5px;
+}
+
+/* Adjust for sticky comments */
+.sticky-comments-section .client-comment-info {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-left-color: rgba(255, 113, 32, 0.7);
+}
+
+.sticky-comments-section .client-name {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.sticky-comments-section .comment-note {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.7);
+} 

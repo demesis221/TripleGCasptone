@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Triple G BuildHub - Dashboard</title>
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="../userside/css/images/logostick.png" as="image">
+    <link rel="preload" href="../json/Color-scheme-remix.json" as="fetch" crossorigin>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="../css/loader.css">
+    <link rel="stylesheet" href="../SiteDiary/sitecss/dashboard.css">
+    <link rel="stylesheet" href="../SiteDiary/sitecss/createblog.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Preload Lottie library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.10.2/lottie.min.js"></script>
+    
+    <!-- Loader initialization script -->
+    <script src="../js/loader-init.js"></script>
+</head>
+<body>
+    <!-- The loading screen will be dynamically injected here by loader.js -->
+    
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo-container">
+            <img src="../userside/css/images/logostick.png" alt="Logo" class="logo">
+            <div class="logo1">TRIPLE<a href="index.html">G</a></div>
+        </div>
+        <ul class="nav-links" id="navLinks">
+            <!-- General Pages -->
+            <li><a href="./userside/home.html">Home</a></li>
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="chatbot.html">Message Center</a></li>        
+            <li><a href="newproject.html">Create Project</a></li>
+            
+            <li class="dropdown">
+                <a href="#" class="dropbtn">Blog ▾</a>
+                <div class="dropdown-content">
+                <a href="createblog.html">Create Blog</a>
+                <a href="drafts.html">Drafts</a>              
+                </div>
+            </li>
+
+            <!-- Site Diary Module -->
+            <li class="dropdown">
+                <a href="#" class="dropbtn">Site Diary ▾</a>
+                <div class="dropdown-content">
+                <a href="diary.html">New Entry</a>
+                <a href="history.html">History</a>
+                <a href="reports.html">Reports</a>
+                </div>
+            </li>
+
+            <!-- Settings -->
+            <li><a href="settings.html">Settings</a></li>
+        </ul>
+        <button class="mobile-menu-btn">
+            <i class="fas fa-bars"></i>
+        </button>
+    </nav>
+
+    <div class="container">
+        <!-- Dashboard Header -->
+        <div class="dashboard-header">
+            <div class="dashboard-title">
+                <i class="fas fa-tachometer-alt"></i>
+                <h1>Project Dashboard</h1>
+            </div>
+            <div class="user-info">
+                <div class="user-greeting">
+                    <div class="user-name">John Doe</div>
+                    <div class="user-role">Project Manager</div>
+                </div>
+                <div class="user-avatar">JD</div>
+            </div>
+        </div>
+        
+        <!-- Dashboard Stats -->
+        <div class="stats-container">
+            <!-- Stat Card 1 -->
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-building"></i>
+                </div>
+                <div class="stat-content">
+                    <div class="stat-value">28</div>
+                    <div class="stat-label">Active Projects</div>
+                </div>
+            </div>
+
+            <!-- Stat Card 2 -->
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <div class="stat-content">
+                    <div class="stat-value">16</div>
+                    <div class="stat-label">On Schedule</div>
+                </div>
+            </div>
+
+            <!-- Stat Card 3 -->
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <div class="stat-content">
+                    <div class="stat-value">8</div>
+                    <div class="stat-label">At Risk</div>
+                </div>
+            </div>
+
+            <!-- Stat Card 4 -->
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fas fa-calendar-check"></i>
+                </div>
+                <div class="stat-content">
+                    <div class="stat-value">4</div>
+                    <div class="stat-label">Completed This Month</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard Controls -->
+        <div class="dashboard-controls">
+            <div class="controls-title">Current Projects</div>
+            <div class="filter-controls">
+                <select class="filter-dropdown">
+                    <option value="">All Categories</option>
+                    <option value="commercial">Commercial</option>
+                    <option value="residential">Residential</option>
+                    <option value="industrial">Industrial</option>
+                    <option value="infrastructure">Infrastructure</option>
+                </select>
+                <select class="filter-dropdown">
+                    <option value="">All Statuses</option>
+                    <option value="planning">Planning</option>
+                    <option value="ongoing">Ongoing</option>
+                    <option value="review">Under Review</option>
+                    <option value="completed">Completed</option>
+                </select>
+                <div class="search-box">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" class="search-input" placeholder="Search projects...">
+                </div>
+            </div>
+        </div>
+        
+        <!-- Project Grid -->
+        <div class="project-grid">
+            <!-- Project Card 1 -->
+            <div class="project-card" data-category="commercial" data-status="ongoing">
+                <img src="../userside/css/images/image6.jpg" alt="Harbor Tower" class="project-image">
+                <div class="project-content">
+                    <h3 class="project-title">Harbor Tower</h3>
+                    <p class="project-description">Luxury commercial building with 35 floors, featuring premium office spaces and retail outlets.</p>
+                    <div class="progress-container">
+                        <div class="progress-label">PROGRESS:</div>
+                        <div class="progress-track">
+                            <div class="progress-bar" style="width: 65%;"></div>
+                        </div>
+                        <div class="milestone-markers">
+                            <div class="milestone completed">
+                                <div class="milestone-dot"></div>
+                                <div class="milestone-label">Planning</div>
+                            </div>
+                            <div class="milestone completed">
+                                <div class="milestone-dot"></div>
+                                <div class="milestone-label">Foundation</div>
+                            </div>
+                            <div class="milestone">
+                                <div class="milestone-dot"></div>
+                                <div class="milestone-label">Structure</div>
+                            </div>
+                            <div class="milestone">
+                                <div class="milestone-dot"></div>
+                                <div class="milestone-label">Finishing</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn btn-outline">Location Details</button>
+                        <button class="btn btn-primary">See Details</button>
+                    </div>
+                </div>
+                <div class="performance-analytics">
+                    <h4 class="analytics-title">Performance Analytics</h4>
+                    <div class="analytics-item">
+                        <span class="analytics-label">Budget Usage:</span>
+                        <span class="analytics-value good">62% Used</span>
+                    </div>
+                                        <!-- Cost Variance commented out                    <div class="analytics-item">                        <span class="analytics-label">Cost Variance:</span>                        <span class="analytics-value good">+2.3%</span>                    </div>                    -->
+                    <div class="analytics-item">
+                        <span class="analytics-label">Schedule Adherence:</span>
+                        <span class="analytics-value good">On Track</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Card 2 -->
+            <div class="project-card" data-category="residential" data-status="planning">
+                <img src="../userside/css/images/image1.jpg" alt="Riverfront Promenade" class="project-image">
+                <div class="project-content">
+                    <h3 class="project-title">Riverfront Promenade</h3>
+                    <p class="project-description">Public infrastructure project featuring walkways, parks, and recreational areas along the river.</p>
+                    <div class="progress-container">
+                        <div class="progress-label">PROGRESS:</div>
+                        <div class="progress-track">
+                            <div class="progress-bar" style="width: 40%;"></div>
+                        </div>
+                        <div class="milestone-markers">
+                            <div class="milestone completed">
+                                <div class="milestone-dot"></div>
+                                <div class="milestone-label">Design</div>
+                            </div>
+                            <div class="milestone completed">
+                                <div class="milestone-dot"></div>
+                                <div class="milestone-label">Clearing</div>
+                            </div>
+                            <div class="milestone">
+                                <div class="milestone-dot"></div>
+                                <div class="milestone-label">Construction</div>
+                            </div>
+                            <div class="milestone">
+                                <div class="milestone-dot"></div>
+                                <div class="milestone-label">Landscaping</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn btn-outline">Location Details</button>
+                        <button class="btn btn-primary">See Details</button>
+                    </div>
+                </div>
+                
+                <div class="performance-analytics">
+                    <h4 class="analytics-title">Performance Analytics</h4>
+                    <div class="analytics-item">
+                        <span class="analytics-label">Budget Usage:</span>
+                        <span class="analytics-value warning">45% Used</span>
+                    </div>
+                                        <!-- Cost Variance commented out                    <div class="analytics-item">                        <span class="analytics-label">Cost Variance:</span>                        <span class="analytics-value warning">+4.8%</span>                    </div>                    -->
+                    <div class="analytics-item">
+                        <span class="analytics-label">Schedule Adherence:</span>
+                        <span class="analytics-value warning">Minor Delays</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Card 3 -->
+            <div class="project-card">
+                <img src="../userside/css/images/image2.jpeg" alt="Oakridge Residences" class="project-image">
+                <div class="project-content">
+                    <h3 class="project-title">Oakridge Residences</h3>
+                    <p class="project-description">Luxury residential complex with 120 units, featuring modern amenities and green spaces.</p>
+                    <div class="progress-container">
+                        <div class="progress-label">PROGRESS:</div>
+                        <div class="progress-track">
+                            <div class="progress-bar" style="width: 85%;"></div>
+                        </div>
+                        <div class="milestone-markers">
+                            <div class="milestone completed">
+                                <div class="milestone-dot"></div>
+                                <div class="milestone-label">Foundation</div>
+                            </div>
+                            <div class="milestone completed">
+                                <div class="milestone-dot"></div>
+                                <div class="milestone-label">Structure</div>
+                            </div>
+                            <div class="milestone completed">
+                                <div class="milestone-dot"></div>
+                                <div class="milestone-label">Interiors</div>
+                            </div>
+                            <div class="milestone">
+                                <div class="milestone-dot"></div>
+                                <div class="milestone-label">Finishing</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn btn-outline">Location Details</button>
+                        <button class="btn btn-primary">See Details</button>
+                    </div>
+                </div>
+                <div class="performance-analytics">
+                    <h4 class="analytics-title">Performance Analytics</h4>
+                    <div class="analytics-item">
+                        <span class="analytics-label">Budget Usage:</span>
+                        <span class="analytics-value warning">88% Used</span>
+                    </div>
+                                        <!-- Cost Variance commented out                    <div class="analytics-item">                        <span class="analytics-label">Cost Variance:</span>                        <span class="analytics-value warning">+3.5%</span>                    </div>                    -->
+                    <div class="analytics-item">
+                        <span class="analytics-label">Schedule Adherence:</span>
+                        <span class="analytics-value good">On Track</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Card 4 -->
+            <div class="project-card">
+                <img src="../userside/css/images/image3.jpg" alt="Tech Innovation Hub" class="project-image">
+                <div class="project-content">
+                    <h3 class="project-title">Tech Innovation Hub</h3>
+                    <p class="project-description">Modern facility designed for tech startups with co-working spaces, conference rooms, and labs.</p>
+                    <div class="progress-container">
+                        <div class="progress-label">PROGRESS:</div>
+                        <div class="progress-track">
+                            <div class="progress-bar" style="width: 25%;"></div>
+                        </div>
+                        <div class="milestone-markers">
+                            <div class="milestone completed">
+                                <div class="milestone-dot"></div>
+                                <div class="milestone-label">Planning</div>
+                            </div>
+                            <div class="milestone">
+                                <div class="milestone-dot"></div>
+                                <div class="milestone-label">Foundation</div>
+                            </div>
+                            <div class="milestone">
+                                <div class="milestone-dot"></div>
+                                <div class="milestone-label">Structure</div>
+                            </div>
+                            <div class="milestone">
+                                <div class="milestone-dot"></div>
+                                <div class="milestone-label">Finishing</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn btn-outline">Location Details</button>
+                        <button class="btn btn-primary">See Details</button>
+                    </div>
+                </div>
+                <div class="performance-analytics">
+                    <h4 class="analytics-title">Performance Analytics</h4>
+                    <div class="analytics-item">
+                        <span class="analytics-label">Budget Usage:</span>
+                        <span class="analytics-value good">22% Used</span>
+                    </div>
+                                        <!-- Cost Variance commented out                    <div class="analytics-item">                        <span class="analytics-label">Cost Variance:</span>                        <span class="analytics-value good">+1.2%</span>                    </div>                    -->
+                    <div class="analytics-item">
+                        <span class="analytics-label">Schedule Adherence:</span>
+                        <span class="analytics-value good">On Track</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Card 5 -->
+            <div class="project-card">
+                <img src="../userside/css/images/image4.jpg" alt="Central Hospital Extension" class="project-image">
+                <div class="project-content">
+                    <h3 class="project-title">Central Hospital Extension</h3>
+                    <p class="project-description">Healthcare facility expansion with new emergency department, ICU, and specialized treatment areas.</p>
+                    <div class="progress-container">
+                        <div class="progress-label">PROGRESS:</div>
+                        <div class="progress-track">
+                            <div class="progress-bar" style="width: 55%;"></div>
+                        </div>
+                        <div class="milestone-markers">
+                            <div class="milestone completed">
+                                <div class="milestone-dot"></div>
+                                <div class="milestone-label">Design</div>
+                            </div>
+                            <div class="milestone completed">
+                                <div class="milestone-dot"></div>
+                                <div class="milestone-label">Foundation</div>
+                            </div>
+                            <div class="milestone">
+                                <div class="milestone-dot"></div>
+                                <div class="milestone-label">Structure</div>
+                            </div>
+                            <div class="milestone">
+                                <div class="milestone-dot"></div>
+                                <div class="milestone-label">Equipment</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn btn-outline">Location Details</button>
+                        <button class="btn btn-primary">See Details</button>
+                    </div>
+                </div>
+                <div class="performance-analytics">
+                    <h4 class="analytics-title">Performance Analytics</h4>
+                    <div class="analytics-item">
+                        <span class="analytics-label">Budget Usage:</span>
+                        <span class="analytics-value danger">60% Used</span>
+                    </div>
+                                        <!-- Cost Variance commented out                    <div class="analytics-item">                        <span class="analytics-label">Cost Variance:</span>                        <span class="analytics-value danger">-7.2%</span>                    </div>                    -->
+                    <div class="analytics-item">
+                        <span class="analytics-label">Schedule Adherence:</span>
+                        <span class="analytics-value warning">Minor Delays</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Card 6 -->
+            <div class="project-card">
+                <img src="../userside/css/images/image5.jpg" alt="Sunset Mall Renovation" class="project-image">
+                <div class="project-content">
+                    <h3 class="project-title">Sunset Mall Renovation</h3>
+                    <p class="project-description">Complete overhaul of existing mall with modern design, improved facilities, and expanded retail space.</p>
+                    <div class="progress-container">
+                        <div class="progress-label">PROGRESS:</div>
+                        <div class="progress-track">
+                            <div class="progress-bar" style="width: 75%;"></div>
+                        </div>
+                        <div class="milestone-markers">
+                            <div class="milestone completed">
+                                <div class="milestone-dot"></div>
+                                <div class="milestone-label">Planning</div>
+                            </div>
+                            <div class="milestone completed">
+                                <div class="milestone-dot"></div>
+                                <div class="milestone-label">Demolition</div>
+                            </div>
+                            <div class="milestone completed">
+                                <div class="milestone-dot"></div>
+                                <div class="milestone-label">Structure</div>
+                            </div>
+                            <div class="milestone">
+                                <div class="milestone-dot"></div>
+                                <div class="milestone-label">Interiors</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn btn-outline">Location Details</button>
+                        <button class="btn btn-primary">See Details</button>
+                    </div>
+                </div>
+                <div class="performance-analytics">
+                    <h4 class="analytics-title">Performance Analytics</h4>
+                    <div class="analytics-item">
+                        <span class="analytics-label">Budget Usage:</span>
+                        <span class="analytics-value warning">78% Used</span>
+                    </div>
+                                        <!-- Cost Variance commented out                    <div class="analytics-item">                        <span class="analytics-label">Cost Variance:</span>                        <span class="analytics-value warning">+5.1%</span>                    </div>                    -->
+                    <div class="analytics-item">
+                        <span class="analytics-label">Schedule Adherence:</span>
+                        <span class="analytics-value good">On Track</span>
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+
+        
+    </div>
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="copyright">
+                &copy; GG.Squad. All rights reserved.
+            </div>
+            <div class="footer-links">
+                <a href="#">Terms of Service</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Support</a>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Scripts -->
+    <script src="./sitecss/sitejs/dashboard.js"></script>
+    <script src="./sitecss/sitejs/chatarkside.js"></script>
+    <!-- loader.js will be loaded by loader-init.js -->
+</body>
+</html>
