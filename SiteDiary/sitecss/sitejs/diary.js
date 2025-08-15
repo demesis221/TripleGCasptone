@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // ===== TAB SWITCHING =====
+    initTabs();
+
     // ===== BUDGET TRACKING VARIABLES =====
     let dailyCost = 0;
     let runningCost = 0;
@@ -17,6 +20,70 @@ document.addEventListener('DOMContentLoaded', function() {
     initDynamicLists();
     setupTimeCalculation();
     setupFormValidation();
+
+    function initTabs() {
+        const tabButtons = Array.from(document.querySelectorAll('.tab-button'));
+        const tabPanels = Array.from(document.querySelectorAll('.tab-panel'));
+
+        if (tabButtons.length === 0) return;
+
+        function activateTab(targetId) {
+            tabButtons.forEach(btn => {
+                const isActive = btn.getAttribute('aria-controls') === targetId;
+                btn.classList.toggle('active', isActive);
+                btn.setAttribute('aria-selected', String(isActive));
+                btn.tabIndex = isActive ? 0 : -1;
+            });
+
+            tabPanels.forEach(panel => {
+                const isActive = panel.id === targetId;
+                panel.classList.toggle('active', isActive);
+                panel.hidden = !isActive;
+            });
+        }
+
+        tabButtons.forEach(btn => {
+            btn.addEventListener('click', () => activateTab(btn.getAttribute('aria-controls')));
+            btn.addEventListener('keydown', (e) => {
+                const currentIndex = tabButtons.indexOf(btn);
+                if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
+                    e.preventDefault();
+                    const next = tabButtons[(currentIndex + 1) % tabButtons.length];
+                    next.focus();
+                    activateTab(next.getAttribute('aria-controls'));
+                } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+                    e.preventDefault();
+                    const prev = tabButtons[(currentIndex - 1 + tabButtons.length) % tabButtons.length];
+                    prev.focus();
+                    activateTab(prev.getAttribute('aria-controls'));
+                } else if (e.key === 'Home') {
+                    e.preventDefault();
+                    tabButtons[0].focus();
+                    activateTab(tabButtons[0].getAttribute('aria-controls'));
+                } else if (e.key === 'End') {
+                    e.preventDefault();
+                    const last = tabButtons[tabButtons.length - 1];
+                    last.focus();
+                    activateTab(last.getAttribute('aria-controls'));
+                }
+            });
+        });
+
+        // Ensure only the first is visible initially
+        const initiallyActive = document.querySelector('.tab-button.active');
+        if (initiallyActive) activateTab(initiallyActive.getAttribute('aria-controls'));
+
+        // Expose helper for focusing tab of an element
+        window.__focusTabForElement = function(el) {
+            const panel = el.closest('.tab-panel');
+            if (!panel) return;
+            const btn = tabButtons.find(b => b.getAttribute('aria-controls') === panel.id);
+            if (btn) {
+                activateTab(panel.id);
+                btn.focus();
+            }
+        };
+    }
 
     // ===== BUDGET TRACKING FUNCTIONS =====
     function initBudgetTracking() {
@@ -309,7 +376,13 @@ document.addEventListener('DOMContentLoaded', function() {
                     event.stopPropagation();
                     
                     const invalidElements = form.querySelectorAll(':invalid');
-                    if (invalidElements.length > 0) invalidElements[0].focus();
+                    if (invalidElements.length > 0) {
+                        const firstInvalid = invalidElements[0];
+                        if (window.__focusTabForElement) {
+                            window.__focusTabForElement(firstInvalid);
+                        }
+                        firstInvalid.focus();
+                    }
                 }
                 
                 form.classList.add('was-validated');
@@ -318,9 +391,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 const supervisorUpload = document.getElementById('supervisorSignatureUpload');
                 if (supervisorUpload && !supervisorUpload.files.length) {
                     event.preventDefault();
-                    document.querySelector('.signature-container .invalid-feedback').style.display = 'block';
+                    const sigFeedback = document.querySelector('.signature-container .invalid-feedback');
+                    if (sigFeedback) sigFeedback.style.display = 'block';
+                    if (window.__focusTabForElement) window.__focusTabForElement(supervisorUpload);
                 } else {
-                    document.querySelector('.signature-container .invalid-feedback').style.display = 'none';
+                    const sigFeedback = document.querySelector('.signature-container .invalid-feedback');
+                    if (sigFeedback) sigFeedback.style.display = 'none';
                 }
             });
         }

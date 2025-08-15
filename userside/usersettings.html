@@ -8,7 +8,7 @@
   <link rel="preload" href="css/images/logostick.png" as="image">
   
   <!-- Styles -->
-  <link rel="stylesheet" href="css/home.css">  <link rel="stylesheet" href="../css/usersettings.css">
+  <link rel="stylesheet" href="css/home.css">  <link rel="stylesheet" href="./css/usersettings.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;500;600;700&display=swap">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap">
@@ -48,10 +48,7 @@
             <i class="fas fa-user"></i>
             <span>Profile Settings</span>
           </li>
-          <li class="settings-menu-item" data-section="notifications">
-            <i class="fas fa-bell"></i>
-            <span>Notifications</span>
-          </li>
+         
           <li class="settings-menu-item" data-section="security">
             <i class="fas fa-lock"></i>
             <span>Password & Security</span>
@@ -78,7 +75,7 @@
 
           <div class="profile-preview">
             <div class="profile-avatar">
-              <img src="css/images/default-avatar.png" alt="Profile Picture" id="profileImage">
+              <img src="./css/images/profile.avif" alt="Profile Picture" id="profileImage">
               <div class="avatar-upload-overlay">
                 <i class="fas fa-camera"></i>
               </div>
@@ -147,80 +144,7 @@
           </form>
         </div>
 
-        <!-- Notifications Section -->
-        <div class="settings-section" id="notifications">
-          <div class="settings-header">
-            <h2 class="settings-section-title">Notification Settings</h2>
-            <p class="settings-section-desc">Manage how and when you receive updates</p>
-          </div>
-
-          <div class="success-message" id="notificationsSuccess">
-            <i class="fas fa-check-circle"></i> Notification settings have been updated successfully.
-          </div>
-
-          <form id="notificationsForm">
-            <div class="toggle-container">
-              <div>
-                <div class="toggle-label">Email Notifications</div>
-                <div class="toggle-description">Receive important updates and notifications via email</div>
-              </div>
-              <label class="toggle-switch">
-                <input type="checkbox" id="emailNotifications" checked>
-                <span class="toggle-slider"></span>
-              </label>
-            </div>
-
-            <div class="toggle-container">
-              <div>
-                <div class="toggle-label">SMS Reminders</div>
-                <div class="toggle-description">Get text messages for important reminders and updates</div>
-              </div>
-              <label class="toggle-switch">
-                <input type="checkbox" id="smsNotifications">
-                <span class="toggle-slider"></span>
-              </label>
-            </div>
-
-            <div class="toggle-container">
-              <div>
-                <div class="toggle-label">Project Milestone Alerts</div>
-                <div class="toggle-description">Be notified when your project reaches important milestones</div>
-              </div>
-              <label class="toggle-switch">
-                <input type="checkbox" id="milestoneNotifications" checked>
-                <span class="toggle-slider"></span>
-              </label>
-            </div>
-
-            <div class="toggle-container">
-              <div>
-                <div class="toggle-label">Newsletter</div>
-                <div class="toggle-description">Receive updates about new Triple G BuildHub services and features</div>
-              </div>
-              <label class="toggle-switch">
-                <input type="checkbox" id="newsletterNotifications">
-                <span class="toggle-slider"></span>
-              </label>
-            </div>
-
-            <div class="notification-level">
-              <div class="notification-level-info">
-                <div class="notification-level-title">Notification Frequency</div>
-                <div class="notification-level-desc">How often would you like to receive non-critical updates</div>
-              </div>
-              <select class="form-select" id="notificationFrequency" style="width: 140px;">
-                <option value="immediate">Immediately</option>
-                <option value="daily" selected>Daily Digest</option>
-                <option value="weekly">Weekly Digest</option>
-              </select>
-            </div>
-
-            <div class="action-buttons">
-              <button type="reset" class="btn btn-secondary">Reset to Default</button>
-              <button type="submit" class="btn btn-primary" id="saveNotifications">Save Preferences</button>
-            </div>
-          </form>
-        </div>
+      
 
         <!-- Security Section -->
         <div class="settings-section" id="security">

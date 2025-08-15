@@ -4,6 +4,11 @@
  * with the Triple G BuildHub branding and Messenger-like interface. 
  */
 (function() {
+    // Prevent duplicate initialization if script is included multiple times
+    if (window.__TG_CHATBOT_INITIALIZED__) {
+        return;
+    }
+    window.__TG_CHATBOT_INITIALIZED__ = true;
     // Configuration
     const config = {
         colors: {
@@ -54,6 +59,11 @@
     // Add variables to track chat state
     let currentMode = 'normal';
     let lastResponseType = '';
+    // Global element references (assigned in init)
+    let chatWindow;
+    let chatButton;
+    let chatMessages;
+    let chatInput;
 
     // Create and append styles
     function createStyles() {
@@ -272,6 +282,18 @@
         document.head.appendChild(styleEl);
     }
 
+    // Initialize core UI and references
+    function init() {
+        // Ensure styles exist
+        createStyles();
+        // Build UI
+        chatButton = createChatButton();
+        chatWindow = createChatWindow();
+        // Capture references
+        chatMessages = chatWindow.querySelector('.tg-chat-messages');
+        chatInput = chatWindow.querySelector('.tg-chat-input');
+    }
+
     // Create chat button with Triple G logo
      function createChatButton() {
         const button = document.createElement('button');
@@ -346,11 +368,7 @@
     const messagesContainer = document.createElement('div');
     messagesContainer.className = 'tg-chat-messages';
 
-    // Add welcome message
-    const welcomeMessage = document.createElement('div');
-    welcomeMessage.className = 'tg-message bot';
-    welcomeMessage.textContent = "👋 Welcome to Triple G BuildHub! How can we assist with your construction management needs today?";
-    messagesContainer.appendChild(welcomeMessage);
+    // First message will be injected via addMessage() so it uses typing animation
 
     // Create input area
     const inputContainer = document.createElement('div');
@@ -382,6 +400,14 @@
     chatWindow.appendChild(messagesContainer);
     chatWindow.appendChild(inputContainer);
     document.body.appendChild(chatWindow);
+    // Inject greeting as the very first message (with typing animation), once per page load
+    setTimeout(() => {
+        const hasAnyMessage = !!messagesContainer.querySelector('.tg-message');
+        if (!window.__TG_CHATBOT_GREETED__ && !hasAnyMessage && typeof addMessage === 'function') {
+            window.__TG_CHATBOT_GREETED__ = true;
+            addMessage("👋 Welcome to Triple G BuildHub! How can we assist with your construction management needs today?", 'bot');
+        }
+    }, 50);
     return chatWindow;
 }
     // Toggle chat window
@@ -401,10 +427,14 @@
         if (triggerKeywords.navigation.some(keyword => message.includes(keyword))) {
             if (message.includes('project') || message.includes('update')) {
                 addMessage("You can view your project milestone on the dashboard.", 'bot');
-                addQuickReplyButtons(['Go to Dashboard', 'View Milestones']);
+                afterBotMessage(() => {
+                    addQuickReplyButtons(['Go to Dashboard', 'View Milestones']);
+                });
             } else if (message.includes('architect') || message.includes('contact')) {
                 addMessage("To reach your architect, use the Contact page or request an appointment below.", 'bot');
-                addContactButton();
+                afterBotMessage(() => {
+                    addContactButton();
+                });
             } else {
                 addMessage("How can I help you navigate our platform? You can ask about projects, contacts, or reports.", 'bot');
             }
@@ -420,14 +450,16 @@
         // Check for support requests
         if (triggerKeywords.support.some(keyword => message.includes(keyword))) {
             addMessage("Would you like to speak to our team?", 'bot');
-            addSupportButtons();
+            afterBotMessage(() => {
+                addSupportButtons();
+            });
             return true;
         }
         
         // Check for appointment requests
         if (triggerKeywords.appointment.some(keyword => message.includes(keyword))) {
-            addMessage("Please enter your phone number to schedule a callback.", 'bot');
             currentMode = 'awaitingPhoneNumber';
+            addMessage("Please enter your phone number to schedule a callback.", 'bot');
             return true;
         }
         
@@ -437,10 +469,14 @@
                 addMessage("Triple G BuildHub is a construction management platform that streamlines communication and project oversight for your building projects.", 'bot');
             } else if (message.includes('contact information')) {
                 addMessage("You can update your contact information in your profile settings. Would you like me to direct you there?", 'bot');
-                addQuickReplyButtons(['Go to Profile', 'Not Now']);
+                afterBotMessage(() => {
+                    addQuickReplyButtons(['Go to Profile', 'Not Now']);
+                });
             } else if (message.includes('supervisor')) {
                 addMessage("Your assigned site supervisor is Michael Rodriguez. Would you like his contact details?", 'bot');
-                addQuickReplyButtons(['Yes, Please', 'No, Thanks']);
+                afterBotMessage(() => {
+                    addQuickReplyButtons(['Yes, Please', 'No, Thanks']);
+                });
             } else {
                 addMessage("I can answer questions about our platform, your account, or your projects. What would you like to know?", 'bot');
             }
@@ -484,13 +520,81 @@
                     chatMessages.removeChild(typingIndicator);
                     const randomResponse = botResponses[Math.floor(Math.random() * botResponses.length)];
                     addMessage(randomResponse, 'bot');
+                    refreshMainOptions();
                 }, 1500);
             }, 500);
         }
     }
 
+    // Global delay used for bot typing animation
+    const BOT_TYPING_DELAY_MS = 1200;
+    function afterBotMessage(callback, extraDelay = 50) {
+        setTimeout(callback, BOT_TYPING_DELAY_MS + extraDelay);
+    }
+
     // Add message to chat
-    function addMessage(text, sender) {
+    // options: { instant?: boolean, suppressMainRefresh?: boolean }
+    function addMessage(text, sender, options = {}) {
+        const { instant = false, suppressMainRefresh = false } = options;
+        // Helper to inject typing styles once
+        function ensureTypingStyles() {
+            if (document.getElementById('tg-typing-styles')) return;
+            const style = document.createElement('style');
+            style.id = 'tg-typing-styles';
+            style.textContent = `
+                .tg-typing { display: inline-flex; gap: 4px; align-items: center; }
+                .tg-typing-dot { width: 6px; height: 6px; border-radius: 50%; background: #ccc; opacity: 0.7; animation: tg-bounce 1s infinite ease-in-out; }
+                .tg-typing-dot:nth-child(2) { animation-delay: 0.15s; }
+                .tg-typing-dot:nth-child(3) { animation-delay: 0.3s; }
+                @keyframes tg-bounce { 0%, 80%, 100% { transform: translateY(0); } 40% { transform: translateY(-4px); } }
+            `;
+            document.head.appendChild(style);
+        }
+
+        if (sender === 'bot') {
+            if (instant) {
+                // Immediate render without typing animation (used for restoring history)
+                const message = document.createElement('div');
+                message.className = 'tg-message bot';
+                message.textContent = text;
+                chatMessages.appendChild(message);
+                scrollToBottom();
+                // Do not refresh main options during history restore
+                return;
+            }
+            // Show typing indicator for ~1.2s before rendering bot message
+            ensureTypingStyles();
+            const typingWrapper = document.createElement('div');
+            typingWrapper.className = 'tg-message bot';
+            const typing = document.createElement('div');
+            typing.className = 'tg-typing';
+            typing.innerHTML = '<span class="tg-typing-dot"></span><span class="tg-typing-dot"></span><span class="tg-typing-dot"></span>';
+            typingWrapper.appendChild(typing);
+            chatMessages.appendChild(typingWrapper);
+            scrollToBottom();
+
+            setTimeout(() => {
+                // Replace typing with actual bot message
+                if (typingWrapper.parentNode === chatMessages) {
+                    chatMessages.removeChild(typingWrapper);
+                }
+                const message = document.createElement('div');
+                message.className = 'tg-message bot';
+                message.textContent = text;
+                chatMessages.appendChild(message);
+                scrollToBottom();
+                // After bot response, re-show the main options (unless awaiting phone input)
+                if (!suppressMainRefresh && typeof refreshMainOptions === 'function' && currentMode !== 'awaitingPhoneNumber') {
+                    const hasMainContainer = !!chatMessages.querySelector('.tg-quick-replies-container');
+                    if (!hasMainContainer) {
+                        setTimeout(() => { refreshMainOptions(); }, 0);
+                    }
+                }
+            }, BOT_TYPING_DELAY_MS);
+            return;
+        }
+
+        // Default immediate render for non-bot messages
         const message = document.createElement('div');
         message.className = `tg-message ${sender}`;
         message.textContent = text;
@@ -510,8 +614,10 @@
             button.addEventListener('click', () => {
                 // Add the selected option as a user message
                 addMessage(option, 'user');
-                // Remove all quick reply buttons
-                chatMessages.removeChild(quickRepliesContainer);
+                // Remove this set of quick replies
+                if (quickRepliesContainer.parentNode === chatMessages) {
+                    chatMessages.removeChild(quickRepliesContainer);
+                }
                 // Process the selected option
                 processUserQuery(option);
             });
@@ -520,6 +626,27 @@
         
         chatMessages.appendChild(quickRepliesContainer);
         scrollToBottom();
+    }
+    
+    // Ensure the main quick reply options are visible (debounced to avoid duplicates)
+    let refreshScheduled = false;
+    function refreshMainOptions() {
+        if (currentMode === 'awaitingPhoneNumber') return; // avoid during phone input
+        if (refreshScheduled) return; // debounce
+        refreshScheduled = true;
+        setTimeout(() => {
+            // Remove any existing MAIN quick reply container to prevent duplicates
+            const existing = chatMessages.querySelectorAll('.tg-quick-replies-container');
+            existing.forEach(el => {
+                if (el.parentNode === chatMessages) {
+                    chatMessages.removeChild(el);
+                }
+            });
+            // Re-add the main quick replies
+            addQuickReplies();
+            scrollToBottom();
+            refreshScheduled = false;
+        }, 60);
     }
 
     // Add contact button
@@ -793,6 +920,11 @@
             "FAQ"
         ];
         
+        // If main quick replies already exist, avoid adding duplicates
+        const existingMain = chatMessages.querySelector('.tg-quick-replies-container');
+        if (existingMain) {
+            return;
+        }
         const quickRepliesContainer = document.createElement('div');
         quickRepliesContainer.className = 'tg-quick-replies-container';
         quickRepliesContainer.style.display = 'flex';
@@ -1134,14 +1266,20 @@
         const savedChat = localStorage.getItem('tg_chatbot_history');
         if (savedChat) {
             const messages = JSON.parse(savedChat);
-            
+            if (messages && messages.length) {
+                // Prevent greeting when history exists
+                window.__TG_CHATBOT_GREETED__ = true;
+            }
             // Clear existing welcome message
             chatMessages.innerHTML = '';
             
             // Add saved messages
             messages.forEach(message => {
-                addMessage(message.text, message.type);
+                // Render instantly and suppress side effects when restoring history
+                addMessage(message.text, message.type, { instant: true, suppressMainRefresh: true });
             });
+            // Ensure we are scrolled to the latest message
+            scrollToBottom();
         }
     }
     
