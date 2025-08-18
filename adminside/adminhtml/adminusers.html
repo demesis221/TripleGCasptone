@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,13 +12,53 @@
     <link rel="stylesheet" href="../admincss/header.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
     <!-- Navigation Bar -->
-        <nav class="navbar">        <div class="logo-container">            <img src="../../css/images/logostick.png" alt="Logo" class="logo">            <div class="logo1">TRIPLE<a href="#">G</a></div>        </div>        <ul class="nav-links" id="navLinks">            <li><a href="../../home.html">Home</a></li>                        <!-- Portfolio Dropdown -->            <li class="dropdown">                <a href="#" class="dropdown-toggle">Portfolio <i class="fas fa-caret-down"></i></a>                <ul class="dropdown-menu">                    <li><a href="projectmanagement.html">Project Management</a></li>                    <li><a href="blogmanagement.html">Blog Management</a></li>                </ul>            </li>                        <!-- Site Diary Dropdown -->            <li class="dropdown">                <a href="#" class="dropdown-toggle">Site Diary Management <i class="fas fa-caret-down"></i></a>                <ul class="dropdown-menu">                    <li><a href="admindiaryreviewer.html">Diary Review</a></li>                    <li><a href="adminhistory.html">Diary History</a></li>                    <li><a href="adminreports.html">Reports & Analytics</a></li>                    <li><a href="adminclientproject.html">Client Projects</a></li>                </ul>            </li>            <!-- Admin Tools -->            <li class="dropdown">                <a href="#" class="dropdown-toggle">Admin Tools <i class="fas fa-caret-down"></i></a>                <ul class="dropdown-menu">                    <li><a href="adminmessagecenter.html">Message Center</a></li>                    <li><a href="adminusers.html" class="active">User Management</a></li>                </ul>            </li>                        <li><a href="../../SiteDiary/settings.html">Settings</a></li>        </ul>        <button class="mobile-menu-btn">            <i class="fas fa-bars"></i>        </button>    </nav>
-    
+    <nav class="navbar">
+        <div class="logo-container"> <img src="../../userside/css/images/logostick.png" alt="Logo" class="logo">
+            <div class="logo1">TRIPLE<a href="#">G</a></div>
+        </div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="../../home.html">Home</a></li> <!-- Portfolio Dropdown -->
+            <li class="dropdown"> <a href="#" class="dropdown-toggle">Portfolio <i class="fas fa-caret-down"></i></a>
+                <ul class="dropdown-menu">
+                    <li><a href="projectmanagement.html">Project Management</a></li>
+                    <li><a href="blogmanagement.html">Blog Management</a></li>
+                </ul>
+            </li> <!-- Site Diary Dropdown -->
+            <li class="dropdown"> <a href="#" class="dropdown-toggle">Site Diary Management <i
+                        class="fas fa-caret-down"></i></a>
+                <ul class="dropdown-menu">
+                    <li><a href="admindiaryreviewer.html">Diary Review</a></li>
+                    <li><a href="adminhistory.html">Diary History</a></li>
+                    <li><a href="adminreports.html">Reports & Analytics</a></li>
+                    <li><a href="adminclientproject.html">Client Projects</a></li>
+                </ul>
+            </li> <!-- Admin Tools -->
+            <li class="dropdown"> <a href="#" class="dropdown-toggle">Admin Tools <i class="fas fa-caret-down"></i></a>
+                <ul class="dropdown-menu">
+                    <li><a href="adminmessagecenter.html">Message Center</a></li>
+                    <li><a href="adminusers.html" class="active">User Management</a></li>
+                </ul>
+            </li>
+            <li><a href="../../SiteDiary/settings.html">Settings</a></li>
+        </ul> <button class="mobile-menu-btn"> <i class="fas fa-bars"></i> </button>
+    </nav>
+
     <div class="container">
-                <!-- Page Header -->        <div class="page-header">            <div class="page-title">                <i class="fas fa-users-cog"></i>                <h1>User Management</h1>            </div>                        <div class="export-options">                <button class="btn btn-primary" id="refreshBtn"><i class="fas fa-sync-alt"></i> Refresh</button>                <button class="btn btn-primary" id="exportPdfBtn"><i class="fas fa-file-pdf"></i> PDF</button>                <button class="btn btn-primary" id="exportCsvBtn"><i class="fas fa-file-csv"></i> CSV</button>                <button class="btn btn-secondary" id="printBtn"><i class="fas fa-print"></i> Print</button>            </div>        </div>
-        
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="page-title"> <i class="fas fa-users-cog"></i>
+                <h1>User Management</h1>
+            </div>
+            <div class="export-options"> <button class="btn btn-primary" id="refreshBtn"><i class="fas fa-sync-alt"></i>
+                    Refresh</button> <button class="btn btn-primary" id="exportPdfBtn"><i class="fas fa-file-pdf"></i>
+                    PDF</button> <button class="btn btn-primary" id="exportCsvBtn"><i class="fas fa-file-csv"></i>
+                    CSV</button> <button class="btn btn-secondary" id="printBtn"><i class="fas fa-print"></i>
+                    Print</button> </div>
+        </div>
+
         <!-- Status Tracker Section -->
         <div class="status-tracker">
             <div class="status-card">
@@ -57,7 +98,7 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- Action Buttons -->
         <div class="action-buttons">
             <button class="btn btn-primary" id="addUserBtn">
@@ -69,7 +110,7 @@
                 View Access Permissions
             </button>
         </div>
-        
+
         <!-- Filter and Search Section -->
         <div class="filter-container">
             <div class="filter-header">
@@ -77,18 +118,18 @@
                     <i class="fas fa-filter"></i>
                     <span>Filter Users</span>
                 </div>
-                
+
                 <button class="filter-toggle" id="filterToggle">
                     <span>Show Filters</span>
                     <i class="fas fa-chevron-down"></i>
                 </button>
             </div>
-            
+
             <div class="search-box">
                 <i class="fas fa-search search-icon"></i>
                 <input type="text" class="search-input" placeholder="Search by name, email, role...">
             </div>
-            
+
             <div class="filter-options" id="filterOptions" style="display: none;">
                 <div class="filter-group">
                     <label for="filter-role">User Role</label>
@@ -99,7 +140,7 @@
                         <option value="Client">Client</option>
                     </select>
                 </div>
-                
+
                 <div class="filter-group">
                     <label for="filter-status">Status</label>
                     <select id="filter-status">
@@ -109,17 +150,17 @@
                         <option value="Pending">Pending Approval</option>
                     </select>
                 </div>
-                
+
                 <div class="filter-group">
                     <label for="filter-date-from">Registration Date From</label>
                     <input type="date" id="filter-date-from">
                 </div>
-                
+
                 <div class="filter-group">
                     <label for="filter-date-to">Registration Date To</label>
                     <input type="date" id="filter-date-to">
                 </div>
-                
+
                 <div class="filter-buttons">
                     <button class="btn btn-secondary" id="resetFilters">
                         <i class="fas fa-undo"></i>
@@ -132,7 +173,7 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- Users Table -->
         <div class="table-responsive">
             <table class="users-table">
@@ -206,7 +247,7 @@
                             </div>
                         </td>
                     </tr>
-                    
+
                     <tr data-role="Admin" data-status="Active">
                         <td>
                             <div class="user-info">
@@ -240,7 +281,7 @@
                             </div>
                         </td>
                     </tr>
-                    
+
                     <!-- Architect Users -->
                     <tr data-role="Architect" data-status="Active">
                         <td>
@@ -275,7 +316,7 @@
                             </div>
                         </td>
                     </tr>
-                    
+
                     <tr data-role="Architect" data-status="Inactive">
                         <td>
                             <div class="user-info">
@@ -309,7 +350,7 @@
                             </div>
                         </td>
                     </tr>
-                    
+
                     <!-- Client Users -->
                     <tr data-role="Client" data-status="Active">
                         <td>
@@ -344,7 +385,7 @@
                             </div>
                         </td>
                     </tr>
-                    
+
                     <!-- Pending Approval User -->
                     <tr data-role="Client" data-status="Pending">
                         <td>
@@ -382,7 +423,7 @@
                 </tbody>
             </table>
         </div>
-        
+
         <!-- Pagination -->
         <div class="pagination">
             <button class="page-btn disabled">
@@ -398,7 +439,7 @@
             </button>
         </div>
     </div>
-    
+
     <!-- Add/Edit User Modal -->
     <div class="modal" id="userModal">
         <div class="modal-content">
@@ -447,7 +488,7 @@
                             </select>
                         </div>
                     </div>
-                    
+
                     <div class="form-group photo-upload">
                         <label>Profile Photo</label>
                         <div class="photo-upload-container">
@@ -459,7 +500,8 @@
                                     <i class="fas fa-upload"></i>
                                     Upload Photo
                                 </label>
-                                <input type="file" id="profilePhoto" name="profilePhoto" accept="image/*" style="display: none;">
+                                <input type="file" id="profilePhoto" name="profilePhoto" accept="image/*"
+                                    style="display: none;">
                                 <button type="button" class="btn btn-danger" id="removePhoto">
                                     <i class="fas fa-trash-alt"></i>
                                     Remove
@@ -475,7 +517,7 @@
             </div>
         </div>
     </div>
-    
+
     <!-- Reset Password Modal -->
     <div class="modal" id="resetPasswordModal">
         <div class="modal-content">
@@ -486,7 +528,7 @@
             <div class="modal-body">
                 <p>Generate a new temporary password for <strong id="resetPasswordUserName">User Name</strong>?</p>
                 <p>The user will be required to change this password on their next login.</p>
-                
+
                 <div class="form-group">
                     <label for="newPassword">New Temporary Password</label>
                     <div class="password-input-container">
@@ -509,7 +551,7 @@
             </div>
         </div>
     </div>
-    
+
     <!-- Access Permissions Modal -->
     <div class="modal" id="permissionsModal">
         <div class="modal-content large-modal">
@@ -581,7 +623,8 @@
                     </table>
                 </div>
                 <div class="permissions-note">
-                    <p><i class="fas fa-info-circle"></i> This is a read-only view of current system permissions by role. To change permissions, please contact the system administrator.</p>
+                    <p><i class="fas fa-info-circle"></i> This is a read-only view of current system permissions by
+                        role. To change permissions, please contact the system administrator.</p>
                 </div>
             </div>
             <div class="modal-footer">
@@ -589,7 +632,7 @@
             </div>
         </div>
     </div>
-    
+
     <!-- Confirmation Modal -->
     <div class="modal" id="confirmationModal">
         <div class="modal-content">
@@ -606,7 +649,7 @@
             </div>
         </div>
     </div>
-    
+
     <footer class="footer">
         <div class="footer-content">
             <div class="copyright">
@@ -619,8 +662,9 @@
             </div>
         </div>
     </footer>
-    
+
     <script src="../adminjs/admin-nav.js"></script>
     <script src="../adminjs/adminusers.js"></script>
 </body>
-</html> 
+
+</html>

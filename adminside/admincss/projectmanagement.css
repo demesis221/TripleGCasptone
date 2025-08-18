@@ -234,15 +234,6 @@ input:checked + .slider:before {
   cursor: pointer;
 }
 
-.btn-primary {
-  background-color: #3498db;
-  color: white;
-}
-
-.btn-secondary {
-  background-color: #7f8c8d;
-  color: white;
-}
 
 .btn-danger {
   background-color: #e74c3c;

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,16 +16,17 @@
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
+
 <body>
     <!-- Navigation Bar -->
     <nav class="navbar">
         <div class="logo-container">
-            <img src="../../css/images/logostick.png" alt="Logo" class="logo">
+            <img src="../../userside/css/images/logostick.png" alt="Logo" class="logo">
             <div class="logo1">TRIPLE<a href="#">G</a></div>
         </div>
         <ul class="nav-links" id="navLinks">
             <li><a href="../../home.html">Home</a></li>
-            
+
             <!-- Portfolio Dropdown -->
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle">Portfolio <i class="fas fa-caret-down"></i></a>
@@ -33,7 +35,7 @@
                     <li><a href="blogmanagement.html">Blog Management</a></li>
                 </ul>
             </li>
-            
+
             <!-- Site Diary Dropdown -->
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle">Site Diary Management <i class="fas fa-caret-down"></i></a>
@@ -44,7 +46,7 @@
                     <li><a href="adminclientproject.html">Client Projects</a></li>
                 </ul>
             </li>
-            
+
             <!-- Admin Tools -->
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle">Admin Tools <i class="fas fa-caret-down"></i></a>
@@ -53,14 +55,14 @@
                     <li><a href="adminusers.html">User Management</a></li>
                 </ul>
             </li>
-            
+
             <li><a href="../../SiteDiary/settings.html">Settings</a></li>
         </ul>
         <button class="mobile-menu-btn">
             <i class="fas fa-bars"></i>
         </button>
     </nav>
-    
+
     <!-- Main Content -->
     <div class="container">
         <!-- Page Header -->
@@ -69,7 +71,7 @@
                 <i class="fas fa-chart-bar"></i>
                 <h1>Reports & Analytics Dashboard</h1>
             </div>
-            
+
             <div class="export-options">
                 <button class="btn btn-primary" id="refreshBtn"><i class="fas fa-sync-alt"></i> Refresh</button>
                 <button class="btn btn-primary" id="exportPdfBtn"><i class="fas fa-file-pdf"></i> PDF</button>
@@ -77,7 +79,7 @@
                 <button class="btn btn-secondary" id="printBtn"><i class="fas fa-print"></i> Print</button>
             </div>
         </div>
-        
+
         <!-- Filter Section -->
         <div class="filter-container">
             <div class="filter-header">
@@ -85,13 +87,13 @@
                     <i class="fas fa-filter"></i>
                     Report Filters
                 </div>
-                
+
                 <button class="filter-toggle" id="toggleFilter">
                     <span>Hide Filters</span>
                     <i class="fas fa-chevron-up"></i>
                 </button>
             </div>
-            
+
             <div class="filter-content" id="filterContent">
                 <div class="filter-options">
                     <div class="filter-group">
@@ -105,7 +107,7 @@
                             <option value="5">Tech Innovation Hub</option>
                         </select>
                     </div>
-                    
+
                     <div class="filter-group">
                         <label for="architect">Architect</label>
                         <select id="architect" name="architect">
@@ -116,7 +118,7 @@
                             <option value="4">Emily Davis</option>
                         </select>
                     </div>
-                    
+
                     <div class="filter-group">
                         <label for="location">Location</label>
                         <select id="location" name="location">
@@ -127,7 +129,7 @@
                             <option value="4">North Technology Park</option>
                         </select>
                     </div>
-                    
+
                     <div class="filter-group">
                         <label for="client">Client</label>
                         <select id="client" name="client">
@@ -138,7 +140,7 @@
                             <option value="4">Tech Park Investments</option>
                         </select>
                     </div>
-                    
+
                     <div class="filter-group">
                         <label>Date Range</label>
                         <div class="date-range">
@@ -150,7 +152,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="filter-group">
                         <label for="status">Report Type</label>
                         <select id="status" name="status">
@@ -163,7 +165,7 @@
                         </select>
                     </div>
                 </div>
-                
+
                 <div class="filter-buttons">
                     <button class="btn btn-secondary" id="resetFiltersBtn">
                         <i class="fas fa-undo"></i>
@@ -176,7 +178,7 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- Summary Section -->
         <div class="summary-section">
             <div class="summary-card">
@@ -188,7 +190,7 @@
                     <span>15% from last month</span>
                 </div>
             </div>
-            
+
             <div class="summary-card warning">
                 <i class="fas fa-exclamation-triangle summary-icon"></i>
                 <div class="summary-title">Reported Delays</div>
@@ -198,7 +200,7 @@
                     <span>8% from last month</span>
                 </div>
             </div>
-            
+
             <div class="summary-card success">
                 <i class="fas fa-tasks summary-icon"></i>
                 <div class="summary-title">Active Projects</div>
@@ -208,7 +210,7 @@
                     <span>1 new this month</span>
                 </div>
             </div>
-            
+
             <div class="summary-card info">
                 <i class="fas fa-dollar-sign summary-icon"></i>
                 <div class="summary-title">Budget Usage</div>
@@ -219,7 +221,7 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- Charts Section -->
         <div class="charts-section">
             <div class="chart-container">
@@ -238,7 +240,7 @@
                     <canvas id="laborChart"></canvas>
                 </div>
             </div>
-            
+
             <div class="chart-container">
                 <div class="chart-header">
                     <div class="chart-title">Project Progress Timeline</div>
@@ -255,7 +257,7 @@
                     <canvas id="progressChart"></canvas>
                 </div>
             </div>
-            
+
             <div class="chart-container">
                 <div class="chart-header">
                     <div class="chart-title">Material Cost Analysis</div>
@@ -272,7 +274,7 @@
                     <canvas id="materialsChart"></canvas>
                 </div>
             </div>
-            
+
             <div class="chart-container">
                 <div class="chart-header">
                     <div class="chart-title">Delay Cause Analysis</div>
@@ -290,7 +292,7 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- Admin-only Advanced Analytics Section -->
         <div class="advanced-analytics-section">
             <div class="section-header">
@@ -304,7 +306,7 @@
                     </button>
                 </div>
             </div>
-            
+
             <div class="advanced-charts">
                 <div class="chart-container full-width">
                     <div class="chart-header">
@@ -322,7 +324,7 @@
                         <canvas id="budgetForecastChart"></canvas>
                     </div>
                 </div>
-                
+
                 <div class="chart-container">
                     <div class="chart-header">
                         <div class="chart-title">Resource Allocation Efficiency</div>
@@ -339,7 +341,7 @@
                         <canvas id="resourceChart"></canvas>
                     </div>
                 </div>
-                
+
                 <div class="chart-container">
                     <div class="chart-header">
                         <div class="chart-title">Weather Impact Analysis</div>
@@ -358,7 +360,7 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- Generated Reports Section -->
         <div class="reports-section">
             <div class="section-header">
@@ -372,7 +374,7 @@
                     </button>
                 </div>
             </div>
-            
+
             <div class="table-container">
                 <div class="table-responsive">
                     <table>
@@ -466,7 +468,7 @@
             </div>
         </div>
     </div>
-    
+
     <!-- New Report Modal -->
     <div class="modal" id="newReportModal">
         <div class="modal-content">
@@ -483,7 +485,7 @@
                 <form id="newReportForm">
                     <div class="form-section">
                         <h3><i class="fas fa-filter"></i> Report Criteria</h3>
-                        
+
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="reportProject">Project <span class="required">*</span></label>
@@ -497,7 +499,7 @@
                                     <option value="tech">Tech Innovation Hub</option>
                                 </select>
                             </div>
-                            
+
                             <div class="form-group">
                                 <label for="reportType">Report Type <span class="required">*</span></label>
                                 <select id="reportType" name="reportType" required>
@@ -511,23 +513,23 @@
                                 </select>
                             </div>
                         </div>
-                        
+
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="reportDateFrom">From Date <span class="required">*</span></label>
                                 <input type="text" id="reportDateFrom" name="reportDateFrom" class="flatpickr" required>
                             </div>
-                            
+
                             <div class="form-group">
                                 <label for="reportDateTo">To Date <span class="required">*</span></label>
                                 <input type="text" id="reportDateTo" name="reportDateTo" class="flatpickr" required>
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="form-section">
                         <h3><i class="fas fa-cog"></i> Report Options</h3>
-                        
+
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="reportFormat">Output Format <span class="required">*</span></label>
@@ -537,13 +539,14 @@
                                     <option value="excel">Excel Spreadsheet</option>
                                 </select>
                             </div>
-                            
+
                             <div class="form-group">
                                 <label for="reportTitle">Report Title <span class="required">*</span></label>
-                                <input type="text" id="reportTitle" name="reportTitle" placeholder="Enter report title" required>
+                                <input type="text" id="reportTitle" name="reportTitle" placeholder="Enter report title"
+                                    required>
                             </div>
                         </div>
-                        
+
                         <div class="form-group checkbox-group-vertical">
                             <label>Include In Report</label>
                             <div class="checkbox-item">
@@ -564,21 +567,22 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="form-section">
                         <h3><i class="fas fa-user-shield"></i> Admin Information</h3>
-                        
+
                         <div class="form-group">
                             <label for="reportAdmin">Generated By <span class="required">*</span></label>
                             <input type="text" id="reportAdmin" name="reportAdmin" placeholder="Your name" required>
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="reportNotes">Notes (Optional)</label>
-                            <textarea id="reportNotes" name="reportNotes" rows="3" placeholder="Any additional notes about this report..."></textarea>
+                            <textarea id="reportNotes" name="reportNotes" rows="3"
+                                placeholder="Any additional notes about this report..."></textarea>
                         </div>
                     </div>
-                    
+
                     <div class="form-actions">
                         <button type="button" class="btn btn-secondary" id="cancelNewReportBtn">Cancel</button>
                         <button type="submit" class="btn btn-primary" id="generateNewReportBtn">Generate Report</button>
@@ -587,9 +591,9 @@
             </div>
         </div>
     </div>
-    
+
     <!-- Delete Confirmation Modal Removed -->
-    
+
     <footer class="footer">
         <div class="footer-content">
             <div class="copyright">
@@ -602,8 +606,9 @@
             </div>
         </div>
     </footer>
-    
+
     <script src="../adminjs/admin-nav.js"></script>
     <script src="../adminjs/adminreports.js"></script>
 </body>
-</html> 
+
+</html>

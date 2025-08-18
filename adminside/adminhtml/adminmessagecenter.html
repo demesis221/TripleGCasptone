@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,13 +13,58 @@
     <link rel="stylesheet" href="../admincss/admin-nav.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
     <!-- Navigation Bar -->
-        <nav class="navbar">        <div class="logo-container">            <img src="../../css/images/logostick.png" alt="Logo" class="logo">            <div class="logo1">TRIPLE<a href="#">G</a></div>        </div>        <ul class="nav-links" id="navLinks">            <li><a href="../../home.html">Home</a></li>                        <!-- Portfolio Dropdown -->            <li class="dropdown">                <a href="#" class="dropdown-toggle">Portfolio <i class="fas fa-caret-down"></i></a>                <ul class="dropdown-menu">                    <li><a href="projectmanagement.html">Project Management</a></li>                    <li><a href="blogmanagement.html">Blog Management</a></li>                </ul>            </li>                        <!-- Site Diary Dropdown -->            <li class="dropdown">                <a href="#" class="dropdown-toggle">Site Diary Management <i class="fas fa-caret-down"></i></a>                <ul class="dropdown-menu">                    <li><a href="admindiaryreviewer.html">Diary Review</a></li>                    <li><a href="adminhistory.html">Diary History</a></li>                    <li><a href="adminreports.html">Reports & Analytics</a></li>                    <li><a href="adminclientproject.html">Client Projects</a></li>                </ul>            </li>            <!-- Admin Tools -->            <li class="dropdown">                <a href="#" class="dropdown-toggle">Admin Tools <i class="fas fa-caret-down"></i></a>                <ul class="dropdown-menu">                    <li><a href="adminmessagecenter.html" class="active">Message Center</a></li>                    <li><a href="adminusers.html">User Management</a></li>                </ul>            </li>                        <li><a href="../../SiteDiary/settings.html">Settings</a></li>        </ul>        <button class="mobile-menu-btn">            <i class="fas fa-bars"></i>        </button>    </nav>
-    
+    <nav class="navbar">
+        <div class="logo-container">
+            <img src="../../userside/css/images/logostick.png" alt="Logo" class="logo">
+            <div class="logo1">TRIPLE<a href="#">G</a></div>
+        </div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="../../home.html">Home</a></li>
+            <!-- Portfolio Dropdown -->
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle">Portfolio <i class="fas fa-caret-down"></i></a>
+                <ul class="dropdown-menu">
+                    <li><a href="projectmanagement.html">Project Management</a></li>
+
+                    <li><a href="blogmanagement.html">Blog Management</a></li>
+                </ul>
+            </li> <!-- Site Diary Dropdown -->
+            <li class="dropdown"> <a href="#" class="dropdown-toggle">Site Diary Management <i
+                        class="fas fa-caret-down"></i></a>
+                <ul class="dropdown-menu">
+                    <li><a href="admindiaryreviewer.html">Diary Review</a></li>
+                    <li><a href="adminhistory.html">Diary History</a></li>
+                    <li><a href="adminreports.html">Reports & Analytics</a></li>
+                    <li><a href="adminclientproject.html">Client Projects</a></li>
+                </ul>
+            </li> <!-- Admin Tools -->
+            <li class="dropdown"> <a href="#" class="dropdown-toggle">Admin Tools <i class="fas fa-caret-down"></i></a>
+                <ul class="dropdown-menu">
+                    <li><a href="adminmessagecenter.html" class="active">Message Center</a></li>
+                    <li><a href="adminusers.html">User Management</a></li>
+                </ul>
+            </li>
+            <li><a href="../../SiteDiary/settings.html">Settings</a></li>
+        </ul> <button class="mobile-menu-btn"> <i class="fas fa-bars"></i> </button>
+    </nav>
+
+
     <div class="container">
-                <!-- Page Header -->        <div class="page-header">            <div class="page-title">                <i class="fas fa-comments"></i>                <h1>Admin Message Center</h1>                <span class="notification-badge">5</span>            </div>                        <div class="export-options">                <button class="btn btn-primary" id="refreshBtn"><i class="fas fa-sync-alt"></i> Refresh</button>                <button class="btn btn-primary" id="exportPdfBtn"><i class="fas fa-file-pdf"></i> PDF</button>                <button class="btn btn-primary" id="exportCsvBtn"><i class="fas fa-file-csv"></i> CSV</button>                <button class="btn btn-secondary" id="printBtn"><i class="fas fa-print"></i> Print</button>            </div>        </div>
-        
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="page-title"> <i class="fas fa-comments"></i>
+                <h1>Admin Message Center</h1> <span class="notification-badge">5</span>
+            </div>
+            <div class="export-options"> <button class="btn btn-primary" id="refreshBtn"><i class="fas fa-sync-alt"></i>
+                    Refresh</button> <button class="btn btn-primary" id="exportPdfBtn"><i class="fas fa-file-pdf"></i>
+                    PDF</button> <button class="btn btn-primary" id="exportCsvBtn"><i class="fas fa-file-csv"></i>
+                    CSV</button> <button class="btn btn-secondary" id="printBtn"><i class="fas fa-print"></i>
+                    Print</button> </div>
+        </div>
+
         <!-- Status Tracker Section -->
         <div class="status-tracker">
             <div class="status-card">
@@ -58,7 +104,7 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- View Toggle and Tab Navigation -->
         <div class="view-controls">
             <div class="tabs">
@@ -68,7 +114,7 @@
                 <button class="tab-btn" data-tab="reviewed">Reviewed</button>
                 <button class="tab-btn" data-tab="archived">Archived</button>
             </div>
-            
+
             <div class="view-toggle">
                 <button id="timelineViewBtn" class="view-btn active" title="Timeline View">
                     <i class="fas fa-stream"></i>
@@ -78,7 +124,7 @@
                 </button>
             </div>
         </div>
-        
+
         <!-- Filter and Search Section -->
         <div class="filter-container">
             <div class="filter-header">
@@ -86,18 +132,18 @@
                     <i class="fas fa-filter"></i>
                     <span>Filter Messages</span>
                 </div>
-                
+
                 <button class="filter-toggle" id="filterToggle">
                     <span>Show Filters</span>
                     <i class="fas fa-chevron-down"></i>
                 </button>
             </div>
-            
+
             <div class="search-box">
                 <i class="fas fa-search search-icon"></i>
                 <input type="text" class="search-input" placeholder="Search by name, email, project, or keyword...">
             </div>
-            
+
             <div class="filter-options" id="filterOptions" style="display: none;">
                 <div class="filter-group">
                     <label for="filter-project">Project Name</label>
@@ -110,7 +156,7 @@
                         <option value="Tech Innovation Hub">Tech Innovation Hub</option>
                     </select>
                 </div>
-                
+
                 <div class="filter-group">
                     <label for="filter-inquiry">Inquiry Type</label>
                     <select id="filter-inquiry">
@@ -121,7 +167,7 @@
                         <option value="Complaint">Complaint</option>
                     </select>
                 </div>
-                
+
                 <div class="filter-group">
                     <label for="filter-status">Status</label>
                     <select id="filter-status">
@@ -132,7 +178,7 @@
                         <option value="Archived">Archived</option>
                     </select>
                 </div>
-                
+
                 <div class="filter-group">
                     <label for="filter-priority">Priority</label>
                     <select id="filter-priority">
@@ -142,17 +188,17 @@
                         <option value="Low">Low</option>
                     </select>
                 </div>
-                
+
                 <div class="filter-group">
                     <label for="filter-date-from">Date From</label>
                     <input type="date" id="filter-date-from">
                 </div>
-                
+
                 <div class="filter-group">
                     <label for="filter-date-to">Date To</label>
                     <input type="date" id="filter-date-to">
                 </div>
-                
+
                 <div class="filter-buttons">
                     <button class="btn btn-secondary" id="resetFilters">
                         <i class="fas fa-undo"></i>
@@ -165,11 +211,11 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- Timeline View -->
         <div class="timeline-view" id="timelineView">
             <div class="timeline-line"></div>
-            
+
             <!-- Timeline Item 1 (New) -->
             <div class="timeline-item" data-status="new">
                 <div class="timeline-header" data-id="1">
@@ -196,7 +242,7 @@
                         </button>
                     </div>
                 </div>
-                
+
                 <div class="timeline-content" id="content1">
                     <div class="timeline-client-info">
                         <div class="info-group">
@@ -219,28 +265,32 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="activities-section">
                         <div class="section-title">
                             <i class="fas fa-comment-alt"></i>
                             <span>Client Message</span>
                         </div>
                         <div class="message-content">
-                            Hello, I need to schedule an urgent meeting regarding changes to the penthouse layout on the Central Business District Tower. Our stakeholders have some concerns about the current design and would like to discuss alternatives as soon as possible. Would it be possible to arrange a meeting this week?
+                            Hello, I need to schedule an urgent meeting regarding changes to the penthouse layout on the
+                            Central Business District Tower. Our stakeholders have some concerns about the current
+                            design and would like to discuss alternatives as soon as possible. Would it be possible to
+                            arrange a meeting this week?
                         </div>
                     </div>
-                    
+
                     <div class="admin-notes-section">
                         <div class="section-title">
                             <i class="fas fa-sticky-note"></i>
                             <span>Admin Notes</span>
                         </div>
-                        <textarea class="admin-notes-textarea" placeholder="Add internal notes here (only visible to admins)..."></textarea>
+                        <textarea class="admin-notes-textarea"
+                            placeholder="Add internal notes here (only visible to admins)..."></textarea>
                         <button class="btn btn-primary save-notes-btn">Save Notes</button>
                     </div>
                 </div>
             </div>
-            
+
             <!-- Timeline Item 2 (Read) -->
             <div class="timeline-item" data-status="read">
                 <div class="timeline-header" data-id="2">
@@ -270,7 +320,7 @@
                         </button>
                     </div>
                 </div>
-                
+
                 <div class="timeline-content" id="content2">
                     <div class="timeline-client-info">
                         <div class="info-group">
@@ -293,28 +343,32 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="activities-section">
                         <div class="section-title">
                             <i class="fas fa-comment-alt"></i>
                             <span>Client Message</span>
                         </div>
                         <div class="message-content">
-                            I've noticed on the project portal that the completion of Phase 1 of the Highway Bridge Expansion has been delayed by two weeks. Could you provide more details about the reason for this delay and whether it will affect the overall project timeline? We need to coordinate with local businesses about traffic disruptions.
+                            I've noticed on the project portal that the completion of Phase 1 of the Highway Bridge
+                            Expansion has been delayed by two weeks. Could you provide more details about the reason for
+                            this delay and whether it will affect the overall project timeline? We need to coordinate
+                            with local businesses about traffic disruptions.
                         </div>
                     </div>
-                    
+
                     <div class="admin-notes-section">
                         <div class="section-title">
                             <i class="fas fa-sticky-note"></i>
                             <span>Admin Notes</span>
                         </div>
-                        <textarea class="admin-notes-textarea" placeholder="Add internal notes here (only visible to admins)...">Need to forward this to the project manager. Material delivery issues caused the delay.</textarea>
+                        <textarea class="admin-notes-textarea"
+                            placeholder="Add internal notes here (only visible to admins)...">Need to forward this to the project manager. Material delivery issues caused the delay.</textarea>
                         <button class="btn btn-primary save-notes-btn">Save Notes</button>
                     </div>
                 </div>
             </div>
-            
+
             <!-- Timeline Item 3 (Reviewed) -->
             <div class="timeline-item" data-status="reviewed">
                 <div class="timeline-header" data-id="3">
@@ -341,7 +395,7 @@
                         </button>
                     </div>
                 </div>
-                
+
                 <div class="timeline-content" id="content3">
                     <div class="timeline-client-info">
                         <div class="info-group">
@@ -364,28 +418,33 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="activities-section">
                         <div class="section-title">
                             <i class="fas fa-comment-alt"></i>
                             <span>Client Message</span>
                         </div>
                         <div class="message-content">
-                            I'm interested in the customization options for the kitchen cabinetry in Building C of the Residential Complex. The brochure mentions premium finishes but doesn't specify what materials or colors are available. Could you provide more information about the options and if there would be any additional costs?
+                            I'm interested in the customization options for the kitchen cabinetry in Building C of the
+                            Residential Complex. The brochure mentions premium finishes but doesn't specify what
+                            materials or colors are available. Could you provide more information about the options and
+                            if there would be any additional costs?
                         </div>
                     </div>
-                    
+
                     <div class="admin-notes-section">
                         <div class="section-title">
                             <i class="fas fa-sticky-note"></i>
                             <span>Admin Notes</span>
                         </div>
-                        <textarea class="admin-notes-textarea" placeholder="Add internal notes here (only visible to admins)..." disabled>Forwarded to sales team on May 14. They will send the detailed catalog and pricing options directly to the client.</textarea>
+                        <textarea class="admin-notes-textarea"
+                            placeholder="Add internal notes here (only visible to admins)..."
+                            disabled>Forwarded to sales team on May 14. They will send the detailed catalog and pricing options directly to the client.</textarea>
                         <button class="btn btn-primary save-notes-btn">Save Notes</button>
                     </div>
                 </div>
             </div>
-            
+
             <!-- Timeline Item 4 (Archived) -->
             <div class="timeline-item" data-status="archived">
                 <div class="timeline-header" data-id="4">
@@ -409,7 +468,7 @@
                         </button>
                     </div>
                 </div>
-                
+
                 <div class="timeline-content" id="content4">
                     <div class="timeline-client-info">
                         <div class="info-group">
@@ -432,29 +491,34 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="activities-section">
                         <div class="section-title">
                             <i class="fas fa-comment-alt"></i>
                             <span>Client Message</span>
                         </div>
                         <div class="message-content">
-                            I've been trying to reach someone about the noise level at the Waterfront Development site. Construction is starting before 7am, which is against local regulations. This has been happening for three days now, and it's disrupting the entire neighborhood. Please address this issue immediately.
+                            I've been trying to reach someone about the noise level at the Waterfront Development site.
+                            Construction is starting before 7am, which is against local regulations. This has been
+                            happening for three days now, and it's disrupting the entire neighborhood. Please address
+                            this issue immediately.
                         </div>
                     </div>
-                    
+
                     <div class="admin-notes-section">
                         <div class="section-title">
                             <i class="fas fa-sticky-note"></i>
                             <span>Admin Notes</span>
                         </div>
-                        <textarea class="admin-notes-textarea" placeholder="Add internal notes here (only visible to admins)..." disabled>Issue resolved on May 11. Site manager contacted and schedule adjusted. Follow-up email sent to client confirming the changes.</textarea>
+                        <textarea class="admin-notes-textarea"
+                            placeholder="Add internal notes here (only visible to admins)..."
+                            disabled>Issue resolved on May 11. Site manager contacted and schedule adjusted. Follow-up email sent to client confirming the changes.</textarea>
                         <button class="btn btn-primary save-notes-btn">Save Notes</button>
                     </div>
                 </div>
             </div>
         </div>
-        
+
         <!-- Table View -->
         <div class="table-view" id="tableView" style="display: none;">
             <div class="table-responsive">
@@ -504,7 +568,7 @@
                                 </div>
                             </td>
                         </tr>
-                        
+
                         <!-- Read Message -->
                         <tr data-status="read">
                             <td>May 15, 2025 • 3:45 PM</td>
@@ -542,7 +606,7 @@
                                 </div>
                             </td>
                         </tr>
-                        
+
                         <!-- Reviewed Message -->
                         <tr data-status="reviewed">
                             <td>May 14, 2025 • 9:12 AM</td>
@@ -577,7 +641,7 @@
                                 </div>
                             </td>
                         </tr>
-                        
+
                         <!-- Archived Message -->
                         <tr data-status="archived">
                             <td>May 10, 2025 • 2:30 PM</td>
@@ -613,7 +677,7 @@
                 </table>
             </div>
         </div>
-        
+
         <!-- Analytics Section -->
         <div class="analytics-section">
             <div class="section-header">
@@ -625,19 +689,19 @@
                     <i class="fas fa-chevron-down"></i>
                 </button>
             </div>
-            
+
             <div class="analytics-content" id="analyticsContent" style="display: none;">
                 <div class="analytics-grid">
                     <div class="chart-container">
                         <h3>Inquiry Type Distribution</h3>
                         <canvas id="inquiryTypeChart"></canvas>
                     </div>
-                    
+
                     <div class="chart-container">
                         <h3>Message Volume by Project</h3>
                         <canvas id="projectChart"></canvas>
                     </div>
-                    
+
                     <div class="chart-container">
                         <h3>Daily Message Volume</h3>
                         <canvas id="dailyVolumeChart"></canvas>
@@ -645,7 +709,7 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- Pagination -->
         <div class="pagination">
             <button class="page-btn disabled">
@@ -661,7 +725,7 @@
             </button>
         </div>
     </div>
-    
+
     <!-- Message View Modal -->
     <div class="modal" id="messageModal">
         <div class="modal-content message-modal">
@@ -680,7 +744,7 @@
             </div>
         </div>
     </div>
-    
+
     <!-- Confirmation Modal -->
     <div class="modal" id="confirmationModal">
         <div class="modal-content confirmation-modal">
@@ -697,7 +761,7 @@
             </div>
         </div>
     </div>
-    
+
     <footer class="footer">
         <div class="footer-content">
             <div class="copyright">
@@ -710,9 +774,10 @@
             </div>
         </div>
     </footer>
-    
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="../adminjs/admin-nav.js"></script>
     <script src="../adminjs/adminmessagecenter.js"></script>
 </body>
-</html> 
+
+</html>
