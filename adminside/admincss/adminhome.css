@@ -1,0 +1,281 @@
+/* Page-specific minimal layout, leveraging shared CSS */
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.page-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.page-title i {
+    font-size: 28px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 16px;
+}
+
+.card {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+    padding: 16px;
+}
+
+.stat {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.stat .icon {
+    width: 44px;
+    height: 44px;
+    display: grid;
+    place-items: center;
+    border-radius: 8px;
+    color: #fff;
+}
+
+.stat .meta {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat .label {
+    font-size: 12px;
+    color: #667085;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+}
+
+.stat .value {
+    font-size: 26px;
+    font-weight: 700;
+    color: #101828;
+}
+
+.icon.blue {
+    background: linear-gradient(135deg, #0a6cf1, #4f9cff);
+}
+
+.icon.green {
+    background: linear-gradient(135deg, #16a34a, #34d399);
+}
+
+.icon.amber {
+    background: linear-gradient(135deg, #f59e0b, #fbbf24);
+}
+
+.icon.purple {
+    background: linear-gradient(135deg, #7c3aed, #a78bfa);
+}
+
+.progress {
+    width: 100%;
+    height: 10px;
+    background: #eef2f7;
+    border-radius: 999px;
+    overflow: hidden;
+    margin-top: 8px;
+}
+
+.progress>span {
+    display: block;
+    height: 100%;
+    background: linear-gradient(90deg, #0a6cf1, #22d3ee);
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.section-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    color: #0f172a;
+}
+
+.list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.list-item {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 16px; /* breathing space between text and actions */
+    padding: 10px 12px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+}
+
+/* Push trailing controls (buttons/badges/timestamps) to the far right with space from text */
+.section-header > :last-child {
+    margin-left: auto;
+}
+.list-item > :last-child {
+    margin-left: auto;
+}
+
+.list-item .left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.list-item .badge {
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 999px;
+    background: #eef2ff;
+    color: #3730a3;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    padding: 10px 14px;
+    font-weight: 600;
+}
+
+.btn-secondary {
+    background: #eef2f7;
+    color: #0f172a;
+
+}
+
+.btn-outline {
+    background: transparent;
+    border: 1px solid;
+}
+
+.quick-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.shortcut {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px;
+    border: 1px dashed #dbe2ea;
+    border-radius: 10px;
+}
+
+.shortcut i {
+    color: #0a6cf1;
+}
+
+/* Collapsible toggle (hidden by default; shown on mobile) */
+.section-toggle {
+    display: none;
+    background: transparent;
+    border: 1px solid #d1d5db;
+    color: #0f172a;
+    border-radius: 8px;
+    padding: 6px 10px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.collapsed {
+    display: none !important;
+}
+
+/* 1024px and below: stack major grids */
+@media (max-width: 1024px) {
+    .grid {
+        grid-template-columns: 1fr !important; /* override inline grid templates */
+    }
+    .grid > .card {
+        grid-column: auto !important; /* ignore inline spans */
+    }
+}
+
+/* 768px and below: make headers wrap and enable collapsibles */
+@media (max-width: 768px) {
+    .page-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+
+    .quick-actions {
+        width: 100%;
+    }
+
+    .section-header {
+        gap: 8px;
+    }
+
+    .section-toggle {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+    }
+}
+
+/* 480px and below: tighter spacing and font sizes */
+@media (max-width: 480px) {
+    .container {
+        padding: 12px;
+    }
+
+    .page-title i {
+        font-size: 22px;
+    }
+    .stat .value {
+        font-size: 22px;
+    }
+    .btn {
+        padding: 8px 10px;
+        font-size: 14px;
+    }
+}
+
+/* 320px and below: ensure buttons and lists fit */
+@media (max-width: 320px) {
+    .btn {
+        width: 100%;
+    }
+    .list-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    /* In stacked layout, remove auto margin so actions align with text */
+    .list-item > :last-child {
+        margin-left: 0;
+    }
+}

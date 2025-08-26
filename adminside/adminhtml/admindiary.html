@@ -10,54 +10,14 @@
     <link rel="stylesheet" href="../../SiteDiary/sitecss/dashboard.css">
     <link rel="stylesheet" href="../admincss/admindiary.css">
     <link rel="stylesheet" href="../admincss/admin-nav.css">
+    <!-- Header/Footer shared styles for admin (contains footer styles) -->
+    <link rel="stylesheet" href="../admincss/header.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
 </head>
 <body>
-    <!-- Navigation Bar -->
-    <nav class="navbar">
-        <div class="logo-container">
-            <img src="../../userside/css/images/logostick.png" alt="Logo" class="logo">
-            <div class="logo1">TRIPLE<a href="#">G</a></div>
-        </div>
-        <ul class="nav-links" id="navLinks">
-            <li><a href="../../home.html">Home</a></li>
-            
-            <!-- Portfolio Dropdown -->
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle">Portfolio <i class="fas fa-caret-down"></i></a>
-                <ul class="dropdown-menu">
-                    <li><a href="projectmanagement.html">Project Management</a></li>
-                    <li><a href="blogmanagement.html">Blog Management</a></li>
-                </ul>
-            </li>
-            
-            <!-- Site Diary Dropdown -->
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle">Site Diary Management <i class="fas fa-caret-down"></i></a>
-                <ul class="dropdown-menu">
-                    <li><a href="admindiaryreviewer.html" class="active">Diary Review</a></li>
-                    <li><a href="adminhistory.html">Diary History</a></li>
-                    <li><a href="adminreports.html">Reports & Analytics</a></li>
-                    <li><a href="adminclientproject.html">Client Projects</a></li>
-                </ul>
-            </li>
-            
-            <!-- Admin Tools -->
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle">Admin Tools <i class="fas fa-caret-down"></i></a>
-                <ul class="dropdown-menu">
-                    <li><a href="adminmessagecenter.html">Message Center</a></li>
-                    <li><a href="adminusers.html">User Management</a></li>
-                </ul>
-            </li>
-            
-            <li><a href="../../SiteDiary/settings.html">Settings</a></li>
-        </ul>
-        <button class="mobile-menu-btn">
-            <i class="fas fa-bars"></i>
-        </button>
-    </nav>
+    <!-- Navigation Bar (included) -->
+    <div data-include="../partials/header.html"></div>
     
 
     
