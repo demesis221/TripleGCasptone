@@ -21,13 +21,7 @@ class TripleGLoader {
         this.retryCount = 0;
         this.maxRetries = 2;
         this.animationPaths = [
-            // Determine paths based on current location
-            window.location.pathname.includes('SiteDiary/') ? 
-                '../json/Color-scheme-remix.json' : './json/Color-scheme-remix.json', // Primary path
-            '/json/Color-scheme-remix.json',  // Absolute path as fallback
-            window.location.pathname.includes('SiteDiary/') ? 
-                '../json/Color-scheme-[remix].json' : './json/Color-scheme-[remix].json', // Try with brackets
-            '/json/Color-scheme-[remix].json' // Absolute path with brackets
+            // No animation paths - using fallback only to avoid CORS errors
         ];
     }
 
@@ -213,8 +207,9 @@ class TripleGLoader {
             return;
         }
 
-        if (retryIndex >= this.animationPaths.length) {
-            console.warn('All animation paths failed - using fallback');
+        // Skip animation loading and go directly to fallback to avoid CORS errors
+        if (this.animationPaths.length === 0 || retryIndex >= this.animationPaths.length) {
+            console.log('Using fallback animation to avoid CORS issues');
             this.useFallbackAnimation();
             return;
         }

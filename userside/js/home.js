@@ -1,11 +1,12 @@
 document.addEventListener("DOMContentLoaded", function () {
+    // Load global header
+    loadGlobalHeader();
+    
     const recentProjects = document.getElementById("recentProjects");
     const prevBtn = document.getElementById("prevBtn");
     const nextBtn = document.getElementById("nextBtn");
     const homeSection = document.getElementById("homeSection");
     const mainImage = document.getElementById("mainImage");
-    const mobileMenuBtn = document.getElementById("mobileMenuBtn");
-    const navLinks = document.getElementById("navLinks");
     const images = [...recentProjects.getElementsByTagName("img")];
   
     // Apply custom scrollbar styles
@@ -47,21 +48,33 @@ document.addEventListener("DOMContentLoaded", function () {
     `;
     document.head.appendChild(style);
   
-    // Mobile menu toggle
-    mobileMenuBtn.addEventListener("click", function () {
-      navLinks.classList.toggle("active");
-      this.querySelector("i").classList.toggle("fa-bars");
-      this.querySelector("i").classList.toggle("fa-times");
-    });
-
-    // Close mobile menu when clicking outside
-    document.addEventListener("click", function (event) {
-      if (!event.target.closest(".navbar") && navLinks.classList.contains("active")) {
-        navLinks.classList.remove("active");
-        mobileMenuBtn.querySelector("i").classList.add("fa-bars");
-        mobileMenuBtn.querySelector("i").classList.remove("fa-times");
-      }
-    });
+    // Function to load global header (inline method to avoid CORS)
+    function loadGlobalHeader() {
+      const headerHTML = `
+        <!-- Navigation -->
+        <nav class="navbar">
+          <div class="logo-container">
+            <img class="logo" src="css/images/logostick.png" alt="Logo">
+            <div class="logo1">TRIPLE<a>G.</a></div>
+          </div>
+          <ul class="nav-links" id="navLinks">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="bloglist.html">Blog</a></li>
+            <li><a href="contacts.html">Contact</a></li>
+            <li><a href="aboutus.html">About Us</a></li>
+            <li><a href="../SiteDiary/dashboard.html">ArchitectDiary</a></li>
+            <li><a href="usersettings.html" class="active">Settings</a></li>
+            <li><a href="index.html">Log in</a></li>
+          </ul>
+          <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <i class="fas fa-bars"></i>
+          </button>
+        </nav>
+      `;
+      document.getElementById('header-placeholder').innerHTML = headerHTML;
+    }
+  
   
     let scrollAmount = 0; // Track current scroll position
     const imgWidth = images.length > 0 ? images[0].clientWidth + 10 : 160; // Account for gap

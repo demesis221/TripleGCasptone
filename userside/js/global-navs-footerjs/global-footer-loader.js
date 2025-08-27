@@ -1,0 +1,50 @@
+// Global Footer Loader - Embedded Footer Content
+document.addEventListener('DOMContentLoaded', function() {
+    loadGlobalFooter();
+});
+
+function loadGlobalFooter() {
+    const footerPlaceholder = document.getElementById('footer-placeholder');
+    
+    if (footerPlaceholder) {
+        // Embedded footer HTML to avoid CORS issues with file:// protocol
+        const footerHTML = `
+            <footer class="footer">
+                <div class="footer-content">
+                    <div class="footer-left">
+                        <h1>TRIPLE G STUDIO</h1>
+                        <h2>WHERE UNIQUE DESIGNS AND CONSTRUCTION ARE BEING DEVELOPED</h2>
+                        <p>WE ARE HERE TO CHANGE THE WORLD SOMETHING DESCRIPTION</p>
+                        <div class="contact-details">
+                            <p>LOCATION DETAILS:</p>
+                            <p>COORDINATES</p>
+                            <p>TripleGStudio@gmail.com</p>
+                            <p>📞 091231876231826</p>
+                        </div>
+                    </div>
+                    <div class="footer-right">
+                        <div class="socials">
+                            <a href="https://twitter.com" target="_blank" class="social-link">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="https://www.instagram.com/triplegchronicles/" target="_blank" class="social-link">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="https://www.facebook.com/TGGG6000" target="_blank" class="social-link">
+                                <i class="fab fa-facebook"></i>
+                            </a>
+                        </div>
+                        <div class="footer-logo">
+                            <img src="./css/images/tripleGlogo.jpg" alt="Logo" class="logo-img">
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        `;
+        
+        footerPlaceholder.innerHTML = footerHTML;
+        console.log('Global footer loaded successfully');
+    } else {
+        console.warn('Footer placeholder not found');
+    }
+}
